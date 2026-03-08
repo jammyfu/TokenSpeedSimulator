@@ -1,0 +1,5 @@
+{
+  "name": "Token Speed Simulator",
+  "description": "A demonstration tool to visualize and measure text streaming speed (Tokens Per Second).",
+  "requestFramePermissions": []
+}
