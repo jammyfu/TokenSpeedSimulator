@@ -103,9 +103,9 @@ export default function App() {
   const t = translations[lang];
 
   const [inputText, setInputText] = useState(
-    lang === 'en' 
-    ? "The quick brown fox jumps over the lazy dog. This is a demonstration of token output speed. Large language models generate text token by token."
-    : "大语言模型以流式方式输出内容。Token 是模型处理文本的基本单位。通过调整 TPS（每秒 Token 数），您可以直观地感受到不同模型的响应速度差异。"
+    lang === 'en'
+      ? "The quick brown fox jumps over the lazy dog. This is a demonstration of token output speed. Large language models generate text token by token."
+      : "大语言模型以流式方式输出内容。Token 是模型处理文本的基本单位。通过调整 TPS（每秒 Token 数），您可以直观地感受到不同模型的响应速度差异。"
   );
   const [tps, setTps] = useState(30);
   const [autoMarkdown, setAutoMarkdown] = useState(true);
@@ -139,7 +139,7 @@ export default function App() {
 
   const startStreaming = () => {
     if (!inputText.trim()) return;
-    
+
     setStreamedText("");
     setTotalTokensGenerated(0);
     const now = performance.now();
@@ -192,24 +192,24 @@ export default function App() {
     const animate = (time: number) => {
       const deltaTime = time - lastUpdateRef.current;
       lastUpdateRef.current = time;
-      
+
       const totalElapsed = time - startTime;
       setElapsedTime(totalElapsed);
 
       // Calculate delta characters based on current TPS and delta time
       // This ensures that changing TPS affects the rate immediately
       const charsToAddFloat = (tps * (deltaTime / 1000)) * CHARS_PER_TOKEN;
-      
+
       // Use a ref to track fractional characters to avoid losing precision at low speeds
       if (!fractionalCharRef.current) fractionalCharRef.current = 0;
       fractionalCharRef.current += charsToAddFloat;
-      
+
       const charsToAdd = Math.floor(fractionalCharRef.current);
-      
+
       if (charsToAdd > 0) {
         fractionalCharRef.current -= charsToAdd;
         const currentInput = inputTextRef.current;
-        
+
         if (currentInput.length > 0) {
           const prevTokens = Math.ceil(charCountRef.current / CHARS_PER_TOKEN);
           charCountRef.current += charsToAdd;
@@ -222,10 +222,10 @@ export default function App() {
               const charIndex = (charCountRef.current - charsToAdd + i) % currentInput.length;
               addedText += currentInput[charIndex];
             }
-            
+
             const combined = prev + addedText;
-            return combined.length > MAX_DISPLAY_LENGTH 
-              ? combined.slice(-MAX_DISPLAY_LENGTH) 
+            return combined.length > MAX_DISPLAY_LENGTH
+              ? combined.slice(-MAX_DISPLAY_LENGTH)
               : combined;
           });
 
@@ -243,15 +243,15 @@ export default function App() {
       const now = performance.now();
       const windowStart = now - 2000;
       speedWindowRef.current = speedWindowRef.current.filter(entry => entry.time > windowStart);
-      
+
       const windowTokens = speedWindowRef.current.reduce((sum, entry) => sum + entry.tokens, 0);
-      const windowDuration = speedWindowRef.current.length > 1 
-        ? (now - speedWindowRef.current[0].time) / 1000 
+      const windowDuration = speedWindowRef.current.length > 1
+        ? (now - speedWindowRef.current[0].time) / 1000
         : 2.0; // Default to window size if not enough data
-      
+
       if (speedWindowRef.current.length > 0) {
         // Use the actual window duration but cap it at 2s for the denominator
-        const effectiveDuration = Math.max(windowDuration, 0.5); 
+        const effectiveDuration = Math.max(windowDuration, 0.5);
         setRollingSpeed(windowTokens / effectiveDuration);
       } else {
         setRollingSpeed(0);
@@ -288,7 +288,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-sans selection:bg-emerald-500/30">
       <div className="max-w-6xl mx-auto p-6 md:p-12 space-y-8">
-        
+
         {/* Header */}
         <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-8">
           <div className="space-y-2">
@@ -302,7 +302,7 @@ export default function App() {
               {t.description}
             </p>
           </div>
-          <button 
+          <button
             onClick={() => setLang(lang === 'en' ? 'zh' : 'en')}
             className="flex items-center gap-2 px-4 py-2 bg-zinc-900 hover:bg-zinc-800 border border-white/10 rounded-xl text-sm font-medium transition-colors"
           >
@@ -312,7 +312,7 @@ export default function App() {
         </header>
 
         <main className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          
+
           {/* Controls & Input */}
           <div className="lg:col-span-4 space-y-6">
             <section className="bg-zinc-900/50 border border-white/5 rounded-2xl p-6 space-y-6">
@@ -325,14 +325,14 @@ export default function App() {
                   <div className="flex justify-between items-center text-sm">
                     <span className="text-zinc-400">{t.tps}</span>
                     <div className="flex items-center gap-2 bg-zinc-950 border border-white/10 rounded-lg p-1">
-                      <button 
+                      <button
                         onClick={() => setTps(prev => Math.max(1, prev - 1))}
                         className="p-1 hover:bg-white/5 rounded transition-colors text-zinc-400 hover:text-white"
                       >
                         <Minus className="w-3 h-3" />
                       </button>
                       <div className="flex items-center text-emerald-400 font-mono font-bold">
-                        <input 
+                        <input
                           type="number"
                           value={tps}
                           onChange={(e) => {
@@ -340,7 +340,7 @@ export default function App() {
                             if (!isNaN(val)) {
                               setTps(Math.min(MAX_TPS, Math.max(0, val)));
                             } else if (e.target.value === '') {
-                              setTps(0); 
+                              setTps(0);
                             }
                           }}
                           onBlur={() => {
@@ -350,7 +350,7 @@ export default function App() {
                         />
                         <span className="text-[10px] ml-0.5 opacity-50">TPS</span>
                       </div>
-                      <button 
+                      <button
                         onClick={() => setTps(prev => Math.min(MAX_TPS, prev + 1))}
                         className="p-1 hover:bg-white/5 rounded transition-colors text-zinc-400 hover:text-white"
                       >
@@ -358,12 +358,12 @@ export default function App() {
                       </button>
                     </div>
                   </div>
-                  <input 
-                    type="range" 
-                    min="0" 
-                    max={MAX_TPS} 
+                  <input
+                    type="range"
+                    min="0"
+                    max={MAX_TPS}
                     step="5"
-                    value={tps} 
+                    value={tps}
                     onChange={(e) => setTps(Math.max(MIN_TPS, parseInt(e.target.value)))}
                     aria-label={t.tps}
                     className="w-full h-1.5 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
@@ -374,8 +374,8 @@ export default function App() {
                     <span>{MAX_TPS} TPS</span>
                   </div>
                   <div className="flex items-center gap-2 pt-2">
-                    <input 
-                      type="checkbox" 
+                    <input
+                      type="checkbox"
                       id="autoMarkdown"
                       checked={autoMarkdown}
                       onChange={(e) => setAutoMarkdown(e.target.checked)}
@@ -392,7 +392,7 @@ export default function App() {
                 <label className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
                   {t.sourceContent}
                 </label>
-                <textarea 
+                <textarea
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
                   placeholder={t.placeholder}
@@ -406,7 +406,7 @@ export default function App() {
 
               <div className="flex gap-3 pt-2">
                 {!isStreaming ? (
-                  <button 
+                  <button
                     onClick={startStreaming}
                     className="flex-1 bg-emerald-500 hover:bg-emerald-400 text-black font-bold py-3 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 active:scale-[0.98]"
                   >
@@ -414,7 +414,7 @@ export default function App() {
                     {t.start}
                   </button>
                 ) : (
-                  <button 
+                  <button
                     onClick={stopStreaming}
                     className="flex-1 bg-zinc-100 hover:bg-white text-black font-bold py-3 rounded-xl transition-all flex items-center justify-center gap-2 active:scale-[0.98]"
                   >
@@ -422,7 +422,7 @@ export default function App() {
                     {t.pause}
                   </button>
                 )}
-                <button 
+                <button
                   onClick={reset}
                   className="p-3 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 rounded-xl transition-colors active:scale-[0.98]"
                   title={t.reset}
@@ -475,14 +475,14 @@ export default function App() {
                   <span className="ml-4 text-xs font-mono text-zinc-500">streaming_output.log</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <button 
+                  <button
                     onClick={clearOutput}
                     className="p-1.5 hover:bg-white/5 rounded-md transition-colors text-zinc-500 hover:text-red-400"
                     title={t.clear}
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
-                  <button 
+                  <button
                     onClick={copyToClipboard}
                     className="p-1.5 hover:bg-white/5 rounded-md transition-colors text-zinc-500 hover:text-zinc-300"
                     title={t.copy}
@@ -491,30 +491,30 @@ export default function App() {
                   </button>
                 </div>
               </div>
-              
-              <div 
+
+              <div
                 ref={streamRef}
-                className="flex-1 p-8 overflow-y-auto font-mono text-lg leading-relaxed relative markdown-body"
+                className={`flex-1 p-8 overflow-y-auto font-mono text-lg leading-relaxed relative markdown-body ${isStreaming ? 'is-streaming' : ''}`}
               >
-                <div className="whitespace-pre-wrap break-words">
+                <div className={autoMarkdown ? "break-words" : "whitespace-pre-wrap break-words"}>
                   {autoMarkdown ? (
                     <ReactMarkdown remarkPlugins={[remarkGfm]}>
                       {streamedText}
                     </ReactMarkdown>
                   ) : (
-                    streamedText
+                    <span>{streamedText}</span>
                   )}
                   {isStreaming && (
                     <motion.span
                       initial={{ opacity: 0 }}
                       animate={{ opacity: [0, 1, 0] }}
                       transition={{ duration: 0.8, repeat: Infinity }}
-                      className="inline-block w-2.5 h-5 bg-emerald-400 ml-1 align-middle"
+                      className="inline-block w-2.5 h-5 bg-emerald-400 ml-1 align-middle cursor"
                     />
                   )}
                 </div>
                 <div ref={scrollAnchorRef} className="h-0 w-0" />
-                
+
                 {streamedText.length === 0 && !isStreaming && (
                   <div className="h-full flex flex-col items-center justify-center text-zinc-700 space-y-4">
                     <Zap className="w-12 h-12 opacity-20" />
