@@ -1,12 +1,6 @@
-<div align="center">
-<img width="1200" height="475" alt="TokenSpeedSimulator Banner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
-
 # Token 输出速度演示 (Token Speed Simulator)
 
 一个旨在可视化大语言模型 (LLM) 流式输出速度的工具。通过调整每秒 Token 数 (TPS)，用户可以直观地感受到不同 AI 模型的响应流畅度。
-
-[在 AI Studio 中查看](https://ai.studio/apps/9cc63345-5fd9-4b7b-a0ad-07de1965423b)
 
 ## 🚀 核心特性
 
