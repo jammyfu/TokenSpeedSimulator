@@ -1,3 +1,22 @@
+<!-- BEGIN:personal-project-standard-entry -->
+## Project Entry
+
+- Project brief: [PROJECT_BRIEF.md](PROJECT_BRIEF.md)
+- Long-range roadmap: [MASTER_PLAN.md](MASTER_PLAN.md)
+- Current execution entry: [CURRENT_PLAN.md](CURRENT_PLAN.md)
+- Candidate backlog: [TODO_BACKLOG.md](TODO_BACKLOG.md)
+- Governance log: [docs/project-governance/WORKLOG.md](docs/project-governance/WORKLOG.md)
+- Automation notes: [docs/AUTOMATION_COMMANDS.md](docs/AUTOMATION_COMMANDS.md)
+- Long-running autonomy: [docs/LONG_RUNNING_AUTONOMY.md](docs/LONG_RUNNING_AUTONOMY.md)
+- Verification entry: `python3 tools/verify.py`
+
+## Standardized Summary
+
+- Positioning: Interactive visualization tool for LLM token streaming speed and perceived responsiveness.
+- Stack: Vite + TypeScript frontend.
+- Current goal: Standardize the demo repository so future polish work has a stable execution loop and verification entrypoint.
+<!-- END:personal-project-standard-entry -->
+
 # Token 输出速度演示 (Token Speed Simulator)
 
 一个旨在可视化大语言模型 (LLM) 流式输出速度的工具。通过调整每秒 Token 数 (TPS)，用户可以直观地感受到不同 AI 模型的响应流畅度。
