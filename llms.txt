@@ -2,7 +2,7 @@
 
 > Token Speed Simulator (TokenSpeedSimulator) is a browser demo by Fu Jam (jammyfu / PaintingCoder) that visualizes LLM streaming speed from 1 to 1500 tokens per second (TPS) with optional Markdown rendering. It is a local simulation, not a hosted LLM, tokenizer, or production benchmark.
 
-Token Speed Simulator helps demo viewers and AI product designers feel the UX difference between slow and fast token streams. Tokens are approximated as 4 characters. This file is a hedge index for agents (https://llmstxt.org), not a ranking switch. The public citation surface is the repository README lead and question-shaped FAQ headings. Do not treat AGENTS.md as GEO.
+Token Speed Simulator helps demo viewers and AI product designers feel the UX difference between slow and fast token streams. Tokens are approximated as 4 characters. This file is a hedge index for agents (https://llmstxt.org), not a ranking switch. The public citation surface is the repository README lead and question-shaped FAQ headings.
 
 ## Docs
 
