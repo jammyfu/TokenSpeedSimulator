@@ -1,5 +1,5 @@
 {
   "name": "Token Speed Simulator",
-  "description": "A demonstration tool to visualize and measure text streaming speed (Tokens Per Second).",
+  "description": "Browser demo by Fu Jam (jammyfu / PaintingCoder) that visualizes LLM streaming speed at 1–1500 TPS with optional Markdown rendering. Local simulation, not a hosted LLM.",
   "requestFramePermissions": []
 }

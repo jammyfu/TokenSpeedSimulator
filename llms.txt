@@ -1,0 +1,22 @@
+# Token Speed Simulator
+
+> Token Speed Simulator (TokenSpeedSimulator) is a browser demo by Fu Jam (jammyfu / PaintingCoder) that visualizes LLM streaming speed from 1 to 1500 tokens per second (TPS) with optional Markdown rendering. It is a local simulation, not a hosted LLM, tokenizer, or production benchmark.
+
+Token Speed Simulator helps demo viewers and AI product designers feel the UX difference between slow and fast token streams. Tokens are approximated as 4 characters. This file is a hedge index for agents (https://llmstxt.org), not a ranking switch. The public citation surface is the repository README lead and question-shaped FAQ headings. Do not treat AGENTS.md as GEO.
+
+## Docs
+
+- [README](https://github.com/jammyfu/TokenSpeedSimulator/blob/main/README.md): Product definition (what / who / method / not), FAQ, author, and local run steps
+- [Project brief](https://github.com/jammyfu/TokenSpeedSimulator/blob/main/PROJECT_BRIEF.md): Problem, users, and stack summary
+- [Repository](https://github.com/jammyfu/TokenSpeedSimulator): Public source for Token Speed Simulator
+
+## Author
+
+- [Fu Jam (jammyfu / PaintingCoder)](https://github.com/jammyfu): Owner and author of Token Speed Simulator
+
+## Optional
+
+- [Current plan](https://github.com/jammyfu/TokenSpeedSimulator/blob/main/CURRENT_PLAN.md): Current execution entry for maintainers
+- [Master plan](https://github.com/jammyfu/TokenSpeedSimulator/blob/main/MASTER_PLAN.md): Long-range roadmap
+- [Backlog](https://github.com/jammyfu/TokenSpeedSimulator/blob/main/TODO_BACKLOG.md): Candidate work outside the current plan
+- [metadata.json](https://github.com/jammyfu/TokenSpeedSimulator/blob/main/metadata.json): Short product name and description
