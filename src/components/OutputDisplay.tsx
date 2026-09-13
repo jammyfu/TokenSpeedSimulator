@@ -18,6 +18,8 @@ interface OutputDisplayProps {
   creator?: string;
   targetTps?: number;
   liveSpeed?: string;
+  tokensCount?: number;
+  raceShare?: number;
   compact?: boolean;
 }
 
@@ -33,6 +35,8 @@ export const OutputDisplay: React.FC<OutputDisplayProps> = ({
   creator,
   targetTps,
   liveSpeed,
+  tokensCount,
+  raceShare,
   compact = false,
 }) => {
   const streamRef = React.useRef<HTMLDivElement>(null);
@@ -67,9 +71,14 @@ export const OutputDisplay: React.FC<OutputDisplayProps> = ({
             )}
           </div>
         </div>
-        <div className="flex items-center gap-1.5 shrink-0">
+        <div className="flex items-center gap-2 shrink-0">
+          {tokensCount != null && (
+            <span className="hidden sm:inline text-[10px] font-mono text-zinc-400 tabular-nums">
+              {tokensCount}
+            </span>
+          )}
           {liveSpeed != null && (
-            <span className="text-[10px] font-mono text-emerald-400 tabular-nums">
+            <span className="text-[11px] font-mono text-emerald-400 tabular-nums">
               {liveSpeed}
             </span>
           )}
@@ -91,6 +100,14 @@ export const OutputDisplay: React.FC<OutputDisplayProps> = ({
           </button>
         </div>
       </div>
+      {raceShare != null && (
+        <div className="shrink-0 h-1 bg-zinc-800" aria-hidden="true">
+          <div
+            className="h-full bg-emerald-400 transition-[width] duration-150"
+            style={{ width: `${Math.max(2, Math.min(100, raceShare * 100))}%` }}
+          />
+        </div>
+      )}
 
       <div
         ref={streamRef}

@@ -125,13 +125,14 @@ export default function App() {
   const isStreaming = streamA.isStreaming || (racing && streamB.isStreaming);
   const combinedTokens = racing ? streamA.tokensCount + streamB.tokensCount : streamA.tokensCount;
   const elapsed = Math.max(streamA.elapsedTime, racing ? streamB.elapsedTime : 0);
+  const raceLead = Math.max(streamA.tokensCount, streamB.tokensCount, 1);
 
   return (
     <div className="h-dvh w-full overflow-hidden bg-[#0a0a0a] text-[#e0e0e0] font-sans selection:bg-emerald-500/30 flex flex-col">
       <Header t={t} lang={lang} onLanguageChange={handleLanguageChange} />
 
-      <div className="flex-1 min-h-0 grid grid-rows-[minmax(0,1fr)_minmax(11rem,38dvh)] lg:grid-rows-1 lg:grid-cols-[minmax(0,1fr)_22rem] xl:grid-cols-[minmax(0,1fr)_24rem]">
-        <section className="min-h-0 p-2 md:p-3">
+      <div className="flex-1 min-h-0 min-w-0 grid grid-rows-[minmax(0,1fr)_auto] lg:grid-rows-1 lg:grid-cols-[minmax(0,1fr)_22rem] xl:grid-cols-[minmax(0,1fr)_24rem]">
+        <section className="min-h-0 min-w-0 p-2 md:p-3">
           {racing ? (
             <div className="h-full min-h-0 grid grid-cols-2 gap-2">
               <OutputDisplay
@@ -146,6 +147,8 @@ export default function App() {
                 creator={selected?.creator}
                 targetTps={selected?.medianTps ?? tps}
                 liveSpeed={streamA.currentSpeed}
+                tokensCount={streamA.tokensCount}
+                raceShare={streamA.tokensCount / raceLead}
                 compact
               />
               <OutputDisplay
@@ -160,6 +163,8 @@ export default function App() {
                 creator={compare?.creator}
                 targetTps={compare?.medianTps}
                 liveSpeed={streamB.currentSpeed}
+                tokensCount={streamB.tokensCount}
+                raceShare={streamB.tokensCount / raceLead}
                 compact
               />
             </div>
@@ -176,11 +181,12 @@ export default function App() {
               creator={selected?.creator}
               targetTps={selected?.medianTps ?? tps}
               liveSpeed={streamA.currentSpeed}
+              tokensCount={streamA.tokensCount}
             />
           )}
         </section>
 
-        <aside className="min-h-0 flex flex-col border-t lg:border-t-0 lg:border-l border-white/10 bg-[#0a0a0a]">
+        <aside className="w-full min-h-0 min-w-0 max-h-[46dvh] lg:max-h-none flex flex-col overflow-hidden border-t lg:border-t-0 lg:border-l border-white/10 bg-[#0a0a0a]">
           <RankingList
             t={t}
             rankings={MODEL_SPEED_RANKINGS}
@@ -193,18 +199,20 @@ export default function App() {
             onClearCompare={handleClearCompare}
             onToggleCompare={handleToggleCompare}
           />
-          <div className="shrink-0 px-3 pb-2 space-y-2 border-t border-white/5">
+          <div className="shrink-0 min-w-0 px-3 pb-2 space-y-2 border-t border-white/5">
             <p className="pt-2 text-[10px] text-zinc-500 truncate">
               {t.selectedModel}: {selected?.displayName ?? '—'}
               {racing && compare ? `  vs  ${compare.displayName}` : ''}
             </p>
-            <Stats
-              t={t}
-              elapsedTime={elapsed}
-              tokensCount={combinedTokens}
-              currentSpeed={racing ? `${streamA.currentSpeed} / ${streamB.currentSpeed}` : streamA.currentSpeed}
-              compact
-            />
+            <div className="hidden lg:block">
+              <Stats
+                t={t}
+                elapsedTime={elapsed}
+                tokensCount={combinedTokens}
+                currentSpeed={racing ? `${streamA.currentSpeed} / ${streamB.currentSpeed}` : streamA.currentSpeed}
+                compact
+              />
+            </div>
             <Controls
               t={t}
               tps={tps}

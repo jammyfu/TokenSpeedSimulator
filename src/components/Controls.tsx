@@ -35,12 +35,12 @@ export const Controls: React.FC<ControlsProps> = ({
   return (
     <section className="shrink-0 space-y-3">
       <div className="space-y-2">
-        <label className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500 flex items-center gap-1.5">
+        <label className="hidden sm:flex text-[10px] font-semibold uppercase tracking-wider text-zinc-500 items-center gap-1.5">
           <Gauge className="w-3.5 h-3.5" />
           {t.speedConfig}
           {lockedByRanking && <span className="normal-case font-normal text-zinc-600">· AA</span>}
         </label>
-        <div className="flex justify-between items-center text-sm">
+        <div className="hidden sm:flex justify-between items-center text-sm">
           <span className="text-zinc-400 text-xs">{t.tps}</span>
           <div className="flex items-center gap-1 bg-zinc-950 border border-white/10 rounded-lg p-1">
             <button
@@ -89,13 +89,13 @@ export const Controls: React.FC<ControlsProps> = ({
           value={tps}
           onChange={(e) => setTps(Math.max(MIN_TPS, parseInt(e.target.value, 10)))}
           aria-label={t.tps}
-          className="w-full h-1.5 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
+          className="hidden sm:block w-full h-1.5 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
         />
-        <div className="flex justify-between text-[10px] text-zinc-600 font-mono">
+        <div className="hidden sm:flex justify-between text-[10px] text-zinc-600 font-mono">
           <span>{MIN_TPS}</span>
           <span>{MAX_TPS}</span>
         </div>
-        <label className="flex items-center gap-2 cursor-pointer select-none">
+        <label className="hidden sm:flex items-center gap-2 cursor-pointer select-none">
           <input
             type="checkbox"
             checked={autoMarkdown}
@@ -106,7 +106,7 @@ export const Controls: React.FC<ControlsProps> = ({
         </label>
       </div>
 
-      <details className="group border-t border-white/5 pt-2">
+      <details className="hidden sm:block group border-t border-white/5 pt-2">
         <summary className="text-[11px] text-zinc-500 cursor-pointer list-none flex items-center justify-between">
           <span>{t.sourceToggle}</span>
           <span className="text-zinc-600 group-open:rotate-180 transition-transform">▾</span>

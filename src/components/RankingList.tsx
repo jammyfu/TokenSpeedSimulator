@@ -31,7 +31,7 @@ export const RankingList: React.FC<RankingListProps> = ({
   const sourceLabel = t.rankingSource.replace('{date}', source.fetchedAt);
 
   return (
-    <section className="min-h-0 flex-1 flex flex-col">
+    <section className="min-h-0 min-w-0 shrink-0 lg:flex-1 flex flex-col overflow-hidden">
       <div className="shrink-0 px-3 pt-2.5 pb-1.5 space-y-1">
         <div className="flex items-start justify-between gap-2">
           <div className="min-w-0">
@@ -72,7 +72,7 @@ export const RankingList: React.FC<RankingListProps> = ({
         )}
       </div>
 
-      <ol className="min-h-0 flex-1 overflow-x-auto overflow-y-hidden lg:overflow-x-hidden lg:overflow-y-auto px-2 pb-2 flex lg:block gap-1.5 lg:space-y-0.5 snap-x snap-mandatory lg:snap-none">
+      <ol className="min-w-0 h-[6.25rem] lg:h-auto lg:flex-1 overflow-x-auto overflow-y-hidden lg:overflow-x-hidden lg:overflow-y-auto px-2 pb-2 flex lg:block gap-1.5 lg:space-y-0.5 snap-x snap-mandatory lg:snap-none">
         {rankings.map((row, index) => {
           const isA = selectedId === row.id;
           const isB = compareId === row.id;
@@ -80,7 +80,7 @@ export const RankingList: React.FC<RankingListProps> = ({
           const width = `${Math.max(6, (row.medianTps / maxTps) * 100)}%`;
 
           return (
-            <li key={row.id} className="snap-start shrink-0 w-44 lg:w-auto">
+            <li key={row.id} className="snap-start shrink-0 w-40 lg:w-auto">
               <div
                 className={`relative flex items-stretch rounded-lg border transition-colors ${
                   active
