@@ -2,6 +2,8 @@
 
 ## 2026-09-13
 
+- After mobile verification, constrained the ranking chip row (`min-w-0` + fixed height) so Play stays on-screen at ~390px.
+- Added a relative lead bar on A/B panes so the race stays readable after both streams fill.
 - Curated an in-repo Artificial Analysis median output-speed snapshot (20 models, fetched 2026-09-13).
 - Ranking rows now set simulator TPS; Compare races two models side by side from one Play action.
 - Rebuilt the shell as a 100dvh adaptive stage with ranking/controls collapsing under or beside the stream.
