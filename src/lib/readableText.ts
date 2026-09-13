@@ -61,9 +61,14 @@ export function extractReadableText(html: string, maxChars = MAX_SOURCE_CHARS): 
     text = `${title}\n\n${text}`;
   }
 
+  text = text.slice(0, maxChars).trim();
+  if (text && !text.endsWith('\n')) {
+    text += '\n';
+  }
+
   return {
     title,
-    text: text.slice(0, maxChars).trim(),
+    text,
   };
 }
 

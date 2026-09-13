@@ -12,7 +12,7 @@ Polish the watchable AA ranking demo: group models by mainstream lines/families,
 - [x] zh/en labels for family names; keep one Play action and `100dvh` shell.
 - [x] Restore an always-available source editor (not ranking-locked) and add URL fetch → readable text.
 - [x] Run `python3 tools/verify.py`.
-- [ ] Browser-check grouping, line-change clear, source edit, and URL fetch.
+- [x] Browser-check grouping, line-change clear, source edit, and URL fetch.
 
 ## Out Of Scope
 
