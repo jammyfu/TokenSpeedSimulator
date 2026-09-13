@@ -8,6 +8,8 @@ interface StatsProps {
   tokensCount: number;
   currentSpeed: string | number;
   compact?: boolean;
+  costPerSecLabel?: string;
+  spentLabel?: string;
 }
 
 export const Stats: React.FC<StatsProps> = ({
@@ -16,6 +18,8 @@ export const Stats: React.FC<StatsProps> = ({
   tokensCount,
   currentSpeed,
   compact = false,
+  costPerSecLabel,
+  spentLabel,
 }) => {
   if (compact) {
     return (
@@ -39,6 +43,19 @@ export const Stats: React.FC<StatsProps> = ({
           <p className="text-[10px] uppercase tracking-widest text-zinc-500">{t.realTimeSpeed}</p>
           <p className="text-sm font-mono font-semibold text-emerald-400 tabular-nums">{currentSpeed}</p>
         </div>
+        {(costPerSecLabel || spentLabel) && (
+          <div
+            className="col-span-3 flex justify-between gap-2 text-[10px] font-mono text-zinc-400"
+            title={`${t.costPerSec} / ${t.costPerMin} / ${t.costPerHour}`}
+          >
+            <span>
+              {t.costPerSec} {costPerSecLabel ?? t.costNa}
+            </span>
+            <span>
+              {t.spent} {spentLabel ?? t.costNa}
+            </span>
+          </div>
+        )}
       </section>
     );
   }

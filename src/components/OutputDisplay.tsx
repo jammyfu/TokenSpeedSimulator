@@ -21,6 +21,7 @@ interface OutputDisplayProps {
   tokensCount?: number;
   raceShare?: number;
   compact?: boolean;
+  spentLabel?: string;
 }
 
 export const OutputDisplay: React.FC<OutputDisplayProps> = ({
@@ -38,6 +39,7 @@ export const OutputDisplay: React.FC<OutputDisplayProps> = ({
   tokensCount,
   raceShare,
   compact = false,
+  spentLabel,
 }) => {
   const streamRef = React.useRef<HTMLDivElement>(null);
 
@@ -75,6 +77,11 @@ export const OutputDisplay: React.FC<OutputDisplayProps> = ({
           {tokensCount != null && (
             <span className="hidden sm:inline text-[10px] font-mono text-zinc-400 tabular-nums">
               {tokensCount}
+            </span>
+          )}
+          {spentLabel && (
+            <span className="hidden sm:inline text-[10px] font-mono text-amber-300/80 tabular-nums">
+              {spentLabel}
             </span>
           )}
           {liveSpeed != null && (

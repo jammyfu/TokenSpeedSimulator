@@ -2,6 +2,12 @@
 
 ## 2026-09-13
 
+- Grouped ranking rows by mainstream model lines (`family`) instead of one flat list; empty Grok/Qwen buckets stay reserved.
+- Switching A or B to a different model line now resets that pane’s stream text; same-line TPS changes keep text.
+- Restored an always-visible source editor and added URL fetch (Vite `/api/fetch-page` plus client fallbacks) that fills the source box without clearing the stage.
+- Browser-checked desktop family sections, same-line keep vs cross-line clear (including compare B), URL fetch of example.com, and ~390px family pills with Play still visible.
+- Added AA-sourced Qwen / GLM / Kimi / MiniMax / Grok family sections; Doubao and ERNIE omitted (no published median TPS).
+- Surface output $/1M, $/s · $/min · $/h, and cumulative spend from AA list prices when available.
 - After mobile verification, constrained the ranking chip row (`min-w-0` + fixed height) so Play stays on-screen at ~390px.
 - Added a relative lead bar on A/B panes so the race stays readable after both streams fill.
 - Curated an in-repo Artificial Analysis median output-speed snapshot (20 models, fetched 2026-09-13).

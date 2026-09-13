@@ -11,9 +11,11 @@ import {
   MODEL_SPEED_RANKINGS,
   RANKING_SOURCE,
   findRanking,
+  isSameFamily,
   rankingToTps,
 } from './data/modelSpeedRankings';
 import { MAX_TPS } from './constants';
+import { cumulativeCostUsd, formatUsd, streamingCostUsd } from './lib/tokenCost';
 import { translations } from './i18n/translations';
 import { Language } from './types';
 
@@ -57,18 +59,24 @@ export default function App() {
   const handleSelect = useCallback((id: string) => {
     const row = findRanking(id);
     if (!row) return;
+    if (!isSameFamily(selectedId, id)) {
+      streamA.reset();
+    }
     setSelectedId(id);
     setTpsState(rankingToTps(row));
     if (compareId === id) {
       setCompareId(null);
     }
-  }, [compareId]);
+  }, [compareId, selectedId, streamA.reset]);
 
   const handleSetCompare = useCallback((id: string) => {
     if (id === selectedId) return;
+    if (!isSameFamily(compareId, id)) {
+      streamB.reset();
+    }
     setCompareId(id);
     setCompareEnabled(true);
-  }, [selectedId]);
+  }, [selectedId, compareId, streamB.reset]);
 
   const handleClearCompare = useCallback(() => {
     setCompareId(null);
@@ -126,6 +134,20 @@ export default function App() {
   const combinedTokens = racing ? streamA.tokensCount + streamB.tokensCount : streamA.tokensCount;
   const elapsed = Math.max(streamA.elapsedTime, racing ? streamB.elapsedTime : 0);
   const raceLead = Math.max(streamA.tokensCount, streamB.tokensCount, 1);
+  const rateA = streamingCostUsd(tps, selected?.outputPricePerMillionUsd);
+  const rateB = streamingCostUsd(compareTps, compare?.outputPricePerMillionUsd);
+  const spentA = cumulativeCostUsd(streamA.tokensCount, selected?.outputPricePerMillionUsd);
+  const spentB = cumulativeCostUsd(streamB.tokensCount, compare?.outputPricePerMillionUsd);
+  const costPerSecLabel = racing
+    ? `${rateA ? formatUsd(rateA.perSec) : t.costNa} / ${rateB ? formatUsd(rateB.perSec) : t.costNa}`
+    : rateA
+      ? `${formatUsd(rateA.perSec)}/s · ${formatUsd(rateA.perMin)}/min · ${formatUsd(rateA.perHour)}/h`
+      : t.costNa;
+  const spentLabel = racing
+    ? `${spentA != null ? formatUsd(spentA) : t.costNa} / ${spentB != null ? formatUsd(spentB) : t.costNa}`
+    : spentA != null
+      ? formatUsd(spentA)
+      : t.costNa;
 
   return (
     <div className="h-dvh w-full overflow-hidden bg-[#0a0a0a] text-[#e0e0e0] font-sans selection:bg-emerald-500/30 flex flex-col">
@@ -149,6 +171,7 @@ export default function App() {
                 liveSpeed={streamA.currentSpeed}
                 tokensCount={streamA.tokensCount}
                 raceShare={streamA.tokensCount / raceLead}
+                spentLabel={spentA != null ? formatUsd(spentA) : t.costNa}
                 compact
               />
               <OutputDisplay
@@ -165,6 +188,7 @@ export default function App() {
                 liveSpeed={streamB.currentSpeed}
                 tokensCount={streamB.tokensCount}
                 raceShare={streamB.tokensCount / raceLead}
+                spentLabel={spentB != null ? formatUsd(spentB) : t.costNa}
                 compact
               />
             </div>
@@ -182,6 +206,7 @@ export default function App() {
               targetTps={selected?.medianTps ?? tps}
               liveSpeed={streamA.currentSpeed}
               tokensCount={streamA.tokensCount}
+              spentLabel={spentA != null ? formatUsd(spentA) : undefined}
             />
           )}
         </section>
@@ -199,7 +224,7 @@ export default function App() {
             onClearCompare={handleClearCompare}
             onToggleCompare={handleToggleCompare}
           />
-          <div className="shrink-0 min-w-0 px-3 pb-2 space-y-2 border-t border-white/5">
+          <div className="shrink-0 min-w-0 px-3 pb-2 space-y-2 border-t border-white/5 overflow-y-auto max-h-[14rem] lg:max-h-none">
             <p className="pt-2 text-[10px] text-zinc-500 truncate">
               {t.selectedModel}: {selected?.displayName ?? '—'}
               {racing && compare ? `  vs  ${compare.displayName}` : ''}
@@ -211,6 +236,8 @@ export default function App() {
                 tokensCount={combinedTokens}
                 currentSpeed={racing ? `${streamA.currentSpeed} / ${streamB.currentSpeed}` : streamA.currentSpeed}
                 compact
+                costPerSecLabel={costPerSecLabel}
+                spentLabel={spentLabel}
               />
             </div>
             <Controls

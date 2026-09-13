@@ -2,27 +2,33 @@
 
 ## Goal
 
-Turn Token Speed Simulator into a watchable, comparable LLM token-speed demo grounded in Artificial Analysis output-speed rankings, with a fullscreen adaptive layout and a single zh/en i18n source.
+Polish the watchable AA ranking demo: group models by mainstream lines/families, and clear staged output when the selected line changes.
 
 ## Tasks
 
-- [x] Curate a typed AA median output-speed snapshot (`src/data/modelSpeedRankings.ts`) and cite source + date.
-- [x] Drive simulator TPS from ranking selection; support optional A/B race compare.
-- [x] Collapse the page into a 100dvh adaptive stage + ranking/controls layout.
-- [x] Consolidate zh/en strings, persist the language switcher, and update `html lang`.
-- [x] Raise TPS headroom for the fastest AA models.
+- [x] Add a `family` field on the AA snapshot and group helpers (`src/data/modelFamilies.ts`).
+- [x] Render ranking UI by household lines (OpenAI, Anthropic, Google, DeepSeek, speed specialists / other).
+- [x] Clear streamed text and reset stream state when A or B switches to a different model line.
+- [x] zh/en labels for family names; keep one Play action and `100dvh` shell.
+- [x] Restore an always-available source editor (not ranking-locked) and add URL fetch → readable text.
+- [x] Add AA-sourced CN lines (Qwen, GLM, Kimi, MiniMax) plus Grok; skip Doubao/ERNIE (no AA TPS).
+- [x] Show output $/1M, burn rate, and cumulative spend when AA publishes a list price.
 - [x] Run `python3 tools/verify.py`.
+- [x] Browser-check grouping, line-change clear, source edit, and URL fetch.
 
 ## Out Of Scope
 
 - Live Artificial Analysis API fetch (requires a key).
+- Adding Grok/Qwen rows that are not in the current snapshot.
 - Locales beyond zh/en.
-- Screenshot-based visual regression.
 
 ## Verification
 
 - Run `python3 tools/verify.py`
-- Exercise Play, ranking click, A/B compare, and language switch in the browser.
+- Confirm ranking sections are grouped by family, not a single flat list.
+- Play a model, switch to another row in the same line — text may remain.
+- Switch to a different line (and A/B across lines) — output text clears.
+- Edit source text; paste a public URL and fetch readable content into the source box.
 
 ## Next Candidates
 

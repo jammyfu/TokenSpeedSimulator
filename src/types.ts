@@ -1,5 +1,17 @@
 export type Language = 'en' | 'zh';
 
+export type ModelFamilyId =
+  | 'openai'
+  | 'anthropic'
+  | 'google'
+  | 'spacexai'
+  | 'deepseek'
+  | 'alibaba'
+  | 'zai'
+  | 'kimi'
+  | 'minimax'
+  | 'specialists';
+
 export interface Translation {
   title: string;
   description: string;
@@ -47,17 +59,50 @@ export interface Translation {
   contrastBadge: string;
   medianTps: string;
   creator: string;
+  familyOpenAI: string;
+  familyAnthropic: string;
+  familyGoogle: string;
+  familySpaceXAI: string;
+  familyDeepSeek: string;
+  familyAlibaba: string;
+  familyZai: string;
+  familyKimi: string;
+  familyMiniMax: string;
+  familySpecialists: string;
+  costPerSec: string;
+  costPerMin: string;
+  costPerHour: string;
+  spent: string;
+  costNa: string;
+  costDisclaimer: string;
+  outputPrice: string;
+  sourceUrl: string;
+  sourceUrlPlaceholder: string;
+  sourceFetch: string;
+  sourceFetching: string;
+  sourceFetchError: string;
+  sourceFetchInvalid: string;
+  sourceFetchBlocked: string;
+  sourceFetchEmpty: string;
 }
 
 export interface ModelSpeedRanking {
   id: string;
   displayName: string;
   creator: string;
+  family: ModelFamilyId;
   medianTps: number;
+  /** USD per 1M output tokens from AA model pages. Omit when unpublished. */
+  outputPricePerMillionUsd?: number;
   note?: string;
   source: string;
   fetchedAt: string;
   highlight?: 'fastest' | 'contrast';
+}
+
+export interface ModelFamilyGroup {
+  id: ModelFamilyId;
+  models: ModelSpeedRanking[];
 }
 
 export interface RankingSourceMeta {

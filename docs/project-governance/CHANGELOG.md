@@ -2,6 +2,11 @@
 
 ## 2026-09-13
 
+- Grouped the ranking UI by mainstream model lines and reserved empty Grok/Qwen families.
+- Clearing the stage when the selected A/B model line changes; same-line switches keep text.
+- Source text is editable again on all breakpoints; a URL can be fetched into the source box.
+- Added Qwen, GLM, Kimi, MiniMax, and Grok family sections from the AA public table; Doubao/ERNIE skipped (no TPS).
+- Ranking/stats show output $/1M, burn rate, and cumulative spend when AA publishes a list price.
 - Added Artificial Analysis output-speed rankings that set simulator TPS.
 - Added optional side-by-side A/B speed race from a single Play control.
 - Switched the app shell to a viewport-filling adaptive layout.
