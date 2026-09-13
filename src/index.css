@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+html,
+body,
+#root {
+  height: 100%;
+  height: 100dvh;
+  max-width: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
 @layer base {
   .markdown-body {
     @apply text-zinc-300;

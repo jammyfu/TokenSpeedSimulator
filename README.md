@@ -14,7 +14,7 @@
 
 - Positioning: Interactive visualization tool for LLM token streaming speed and perceived responsiveness.
 - Stack: Vite + TypeScript frontend.
-- Current goal: Standardize the demo repository so future polish work has a stable execution loop and verification entrypoint.
+- Current goal: Watchable, comparable LLM token-speed demo grounded in Artificial Analysis rankings, with fullscreen adaptive layout and zh/en switching.
 <!-- END:personal-project-standard-entry -->
 
 # Token 输出速度演示 (Token Speed Simulator)
@@ -23,11 +23,12 @@
 
 ## 🚀 核心特性
 
-- **实时速度控制**: 支持从 1 到 1500 TPS 的精准调节，感受从“慢读”到“极速”的差异。
-- **动态渲染**: 内置 Markdown 渲染支持，模拟真实 AI 交互中的格式展示。
-- **监控大屏**: 自动实时统计生成用时、总 Token 数以及瞬时 TPS。
-- **高级渲染策略**: 针对高速输出进行了性能优化，自动管理长文本滚动。
-- **极简设计**: 响应式深色模式界面，基于现代交互美学设计。
+- **权威排行定速**: 内置 [Artificial Analysis](https://artificialanalysis.ai/leaderboards/models) 中位输出 tokens/s 快照（2026-09-13），点选模型即可按该速度播放。
+- **可看、可对比**: 主舞台是流式输出；可选 A/B 并排竞速，一个「播放」按钮。
+- **全屏自适应**: 铺满视口（100dvh），手机到桌面切换为上下/左右布局。
+- **中英切换**: zh/en 文案单一来源，语言选择会记住并更新 `html lang`。
+- **实时速度控制**: 支持 1–2000 TPS，覆盖当前 AA 最快模型并留出余量。
+- **动态渲染**: 内置 Markdown 渲染，模拟真实流式格式。
 
 ## 🛠️ 快速开始
 

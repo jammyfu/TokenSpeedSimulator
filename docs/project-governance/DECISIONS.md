@@ -1,5 +1,14 @@
 # DECISIONS.md
 
+## 2026-09-13
+
+- Treat Artificial Analysis public leaderboard **median output tokens/s** as the speed source of truth, stored as a curated snapshot (no API key).
+- Keep a short ranked set (~20): fastest AA callouts plus well-known mid/slow frontier models for contrast.
+- Ranking is the content; Play is the only primary action. A/B compare is optional and side-by-side.
+- Single i18n module (`src/i18n/translations.ts`) — App.tsx no longer owns a second string table.
+- Fullscreen shell uses `100dvh` + CSS grid that stacks on ~390px and places ranking beside the stage on desktop.
+- Accept new product UI beyond the original governance “no new feature work” boundary because the owner requested a watchable ranking demo.
+
 ## 2026-04-18
 
 - Adopt `CURRENT_PLAN.md` as the only current execution entry for `TokenSpeedSimulator`.

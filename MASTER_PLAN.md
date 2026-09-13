@@ -9,7 +9,7 @@ Standardize the demo repository so future polish work has a stable execution loo
 | Phase | Focus |
 | --- | --- |
 | Phase 1 | Bootstrap governance and verify entrypoints. |
-| Phase 2 | Stabilize demo behavior and presentation polish. |
+| Phase 2 | Watchable AA speed rankings, compare race, fullscreen shell, zh/en i18n. |
 | Phase 3 | Package repeatable demo assets and regression checks. |
 
 ## Boundaries
