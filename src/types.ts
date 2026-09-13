@@ -7,6 +7,9 @@ export type ModelFamilyId =
   | 'spacexai'
   | 'deepseek'
   | 'alibaba'
+  | 'zai'
+  | 'kimi'
+  | 'minimax'
   | 'specialists';
 
 export interface Translation {
@@ -62,7 +65,16 @@ export interface Translation {
   familySpaceXAI: string;
   familyDeepSeek: string;
   familyAlibaba: string;
+  familyZai: string;
+  familyKimi: string;
+  familyMiniMax: string;
   familySpecialists: string;
+  costPerSec: string;
+  costPerMin: string;
+  spent: string;
+  costNa: string;
+  costDisclaimer: string;
+  outputPrice: string;
   sourceUrl: string;
   sourceUrlPlaceholder: string;
   sourceFetch: string;
@@ -79,6 +91,8 @@ export interface ModelSpeedRanking {
   creator: string;
   family: ModelFamilyId;
   medianTps: number;
+  /** USD per 1M output tokens from AA model pages. Omit when unpublished. */
+  outputPricePerMillionUsd?: number;
   note?: string;
   source: string;
   fetchedAt: string;

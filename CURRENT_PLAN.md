@@ -11,6 +11,8 @@ Polish the watchable AA ranking demo: group models by mainstream lines/families,
 - [x] Clear streamed text and reset stream state when A or B switches to a different model line.
 - [x] zh/en labels for family names; keep one Play action and `100dvh` shell.
 - [x] Restore an always-available source editor (not ranking-locked) and add URL fetch → readable text.
+- [x] Add AA-sourced CN lines (Qwen, GLM, Kimi, MiniMax) plus Grok; skip Doubao/ERNIE (no AA TPS).
+- [x] Show output $/1M, burn rate, and cumulative spend when AA publishes a list price.
 - [x] Run `python3 tools/verify.py`.
 - [x] Browser-check grouping, line-change clear, source edit, and URL fetch.
 

@@ -11,6 +11,13 @@ import { ModelFamilyId, ModelSpeedRanking, RankingSourceMeta } from '../types';
  * Gemini 3.5 Flash-Lite 372.4 t/s. Other rows use the published table
  * median Tokens/s. Curated top-speed names plus well-known slower
  * frontier/chat models for contrast — not the full 300-row catalog.
+ *
+ * Extra household CN / Grok rows added from the same public table
+ * (2026-09-13). Doubao Seed Code and ERNIE 5.0/4.5 have no AA median
+ * Tokens/s on that table, so they are omitted rather than invented.
+ *
+ * outputPricePerMillionUsd is USD / 1M output tokens from the matching
+ * AA model page when published. Missing price stays undefined (UI: —).
  */
 export const RANKING_SOURCE: RankingSourceMeta = {
   name: 'Artificial Analysis',
@@ -29,7 +36,8 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     creator: 'Celeris',
     family: 'specialists',
     medianTps: 1411.9,
-    note: 'AA fastest on the public leaderboard FAQ.',
+    outputPricePerMillionUsd: 0.7,
+    note: 'AA fastest on the public leaderboard FAQ. Output $0.70/1M (AA model page).',
     source: SOURCE,
     fetchedAt: FETCHED_AT,
     highlight: 'fastest',
@@ -40,6 +48,7 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     creator: 'Inception',
     family: 'specialists',
     medianTps: 734,
+    outputPricePerMillionUsd: 0.75,
     note: 'Second-fastest in AA output-speed callout.',
     source: SOURCE,
     fetchedAt: FETCHED_AT,
@@ -126,6 +135,7 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     creator: 'DeepSeek',
     family: 'deepseek',
     medianTps: 213,
+    outputPricePerMillionUsd: 1.2,
     source: SOURCE,
     fetchedAt: FETCHED_AT,
   },
@@ -204,16 +214,81 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     creator: 'Anthropic',
     family: 'anthropic',
     medianTps: 51,
+    outputPricePerMillionUsd: 25,
     note: 'Frontier Claude tier — slower for contrast.',
     source: SOURCE,
     fetchedAt: FETCHED_AT,
     highlight: 'contrast',
   },
   {
+    id: 'glm-5-3-flash',
+    displayName: 'GLM-5.3-Flash',
+    creator: 'Z AI',
+    family: 'zai',
+    medianTps: 107,
+    note: 'AA public leaderboard median Tokens/s, 2026-09-13.',
+    source: SOURCE,
+    fetchedAt: FETCHED_AT,
+  },
+  {
+    id: 'minimax-m3',
+    displayName: 'MiniMax-M3',
+    creator: 'MiniMax',
+    family: 'minimax',
+    medianTps: 97,
+    outputPricePerMillionUsd: 1.2,
+    note: 'AA model page: 97.0 t/s, output $1.20/1M.',
+    source: SOURCE,
+    fetchedAt: FETCHED_AT,
+  },
+  {
+    id: 'glm-5-3-max',
+    displayName: 'GLM-5.3 (max)',
+    creator: 'Z AI',
+    family: 'zai',
+    medianTps: 66,
+    outputPricePerMillionUsd: 4.4,
+    note: 'AA model page: 66.1 t/s, output $4.40/1M.',
+    source: SOURCE,
+    fetchedAt: FETCHED_AT,
+  },
+  {
+    id: 'grok-4-6-high',
+    displayName: 'Grok 4.6 (high)',
+    creator: 'SpaceXAI',
+    family: 'spacexai',
+    medianTps: 58,
+    outputPricePerMillionUsd: 6,
+    note: 'AA model page: 58.2 t/s, output $6.00/1M.',
+    source: SOURCE,
+    fetchedAt: FETCHED_AT,
+  },
+  {
+    id: 'qwen3-8-flash-next',
+    displayName: 'Qwen3.8-Flash-Next',
+    creator: 'Alibaba',
+    family: 'alibaba',
+    medianTps: 50,
+    note: 'AA public leaderboard median Tokens/s, 2026-09-13.',
+    source: SOURCE,
+    fetchedAt: FETCHED_AT,
+  },
+  {
+    id: 'qwen3-8-max',
+    displayName: 'Qwen3.8 Max',
+    creator: 'Alibaba',
+    family: 'alibaba',
+    medianTps: 40,
+    outputPricePerMillionUsd: 6,
+    note: 'AA model page: 39.9 t/s, output $6.00/1M.',
+    source: SOURCE,
+    fetchedAt: FETCHED_AT,
+  },
+  {
     id: 'kimi-k3-max',
     displayName: 'Kimi K3 (max)',
     creator: 'Kimi',
-    family: 'specialists',
+    family: 'kimi',
     medianTps: 38,
     note: 'Well-known long-context model, slower output for contrast.',
     source: SOURCE,

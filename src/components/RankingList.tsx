@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { ModelFamilyId, ModelSpeedRanking, RankingSourceMeta, Translation } from '../types';
 import { formatMedianTps } from '../data/modelSpeedRankings';
+import { formatUsdPerMillion } from '../lib/tokenCost';
 import { getFamilyLabel, globalRankById, groupRankingsByFamily } from '../data/modelFamilies';
 
 interface RankingListProps {
@@ -90,8 +91,15 @@ const RankingRow: React.FC<RankingRowProps> = ({
               <span className="block h-full bg-emerald-500/70" style={{ width }} />
             </span>
           </span>
-          <span className="shrink-0 text-xs font-mono text-emerald-400 tabular-nums">
-            {formatMedianTps(row.medianTps)}
+          <span className="shrink-0 text-right">
+            <span className="block text-xs font-mono text-emerald-400 tabular-nums">
+              {formatMedianTps(row.medianTps)}
+            </span>
+            <span className="hidden lg:block text-[9px] font-mono text-zinc-600 tabular-nums">
+              {row.outputPricePerMillionUsd != null
+                ? formatUsdPerMillion(row.outputPricePerMillionUsd)
+                : t.costNa}
+            </span>
           </span>
         </button>
         {compareEnabled && !isA && (

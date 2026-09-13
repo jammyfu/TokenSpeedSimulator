@@ -1,10 +1,8 @@
 import { ModelFamilyGroup, ModelFamilyId, ModelSpeedRanking, Translation } from '../types';
 
 /**
- * Household model lines first, then a catch-all for diffusion / fast
- * outliers that do not sit in a widely recognized family.
- * SpaceXAI (Grok) and Alibaba (Qwen) stay in the order so a future
- * snapshot row can appear without reshuffling the UI.
+ * Household Western + Chinese model lines, then diffusion / fast outliers.
+ * Doubao and ERNIE stay off the list until AA publishes a median TPS.
  */
 export const MODEL_FAMILY_ORDER: ModelFamilyId[] = [
   'openai',
@@ -13,6 +11,9 @@ export const MODEL_FAMILY_ORDER: ModelFamilyId[] = [
   'spacexai',
   'deepseek',
   'alibaba',
+  'zai',
+  'kimi',
+  'minimax',
   'specialists',
 ];
 
@@ -23,6 +24,9 @@ const FAMILY_LABEL_KEY: Record<ModelFamilyId, keyof Translation> = {
   spacexai: 'familySpaceXAI',
   deepseek: 'familyDeepSeek',
   alibaba: 'familyAlibaba',
+  zai: 'familyZai',
+  kimi: 'familyKimi',
+  minimax: 'familyMiniMax',
   specialists: 'familySpecialists',
 };
 
