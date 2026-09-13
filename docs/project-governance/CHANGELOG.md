@@ -2,6 +2,8 @@
 
 ## 2026-09-13
 
+- Grouped the ranking UI by mainstream model lines and reserved empty Grok/Qwen families.
+- Clearing the stage when the selected A/B model line changes; same-line switches keep text.
 - Added Artificial Analysis output-speed rankings that set simulator TPS.
 - Added optional side-by-side A/B speed race from a single Play control.
 - Switched the app shell to a viewport-filling adaptive layout.

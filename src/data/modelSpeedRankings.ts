@@ -1,4 +1,4 @@
-import { ModelSpeedRanking, RankingSourceMeta } from '../types';
+import { ModelFamilyId, ModelSpeedRanking, RankingSourceMeta } from '../types';
 
 /**
  * Curated snapshot of Artificial Analysis LLM leaderboard output speed.
@@ -27,6 +27,7 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     id: 'celeris-1',
     displayName: 'Celeris-1',
     creator: 'Celeris',
+    family: 'specialists',
     medianTps: 1411.9,
     note: 'AA fastest on the public leaderboard FAQ.',
     source: SOURCE,
@@ -37,6 +38,7 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     id: 'mercury-2',
     displayName: 'Mercury 2',
     creator: 'Inception',
+    family: 'specialists',
     medianTps: 734,
     note: 'Second-fastest in AA output-speed callout.',
     source: SOURCE,
@@ -47,6 +49,7 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     id: 'gemini-3-5-flash-lite',
     displayName: 'Gemini 3.5 Flash-Lite',
     creator: 'Google',
+    family: 'google',
     medianTps: 372.4,
     note: 'Fastest widely known Gemini Flash-family SKU on this snapshot.',
     source: SOURCE,
@@ -56,6 +59,7 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     id: 'hypernova-60b-2605-high',
     displayName: 'HyperNova 60B 2605 (high)',
     creator: 'Multiverse Computing',
+    family: 'specialists',
     medianTps: 361,
     note: 'High-effort HyperNova row from the AA table.',
     source: SOURCE,
@@ -65,6 +69,7 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     id: 'trinity-large-thinking',
     displayName: 'Trinity Large Thinking',
     creator: 'Arcee AI',
+    family: 'specialists',
     medianTps: 322,
     source: SOURCE,
     fetchedAt: FETCHED_AT,
@@ -73,6 +78,7 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     id: 'ling-3-0-flash',
     displayName: 'Ling 3.0 Flash',
     creator: 'InclusionAI',
+    family: 'specialists',
     medianTps: 315,
     source: SOURCE,
     fetchedAt: FETCHED_AT,
@@ -81,6 +87,7 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     id: 'nemotron-3-5-lightning',
     displayName: 'Nemotron 3.5 Lightning',
     creator: 'NVIDIA',
+    family: 'specialists',
     medianTps: 283,
     source: SOURCE,
     fetchedAt: FETCHED_AT,
@@ -89,6 +96,7 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     id: 'gemini-3-7-flash-high',
     displayName: 'Gemini 3.7 Flash (high)',
     creator: 'Google',
+    family: 'google',
     medianTps: 295,
     note: 'Gemini Flash family, high-effort row.',
     source: SOURCE,
@@ -98,6 +106,7 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     id: 'gemini-3-8-flash-high',
     displayName: 'Gemini 3.8 Flash (high)',
     creator: 'Google',
+    family: 'google',
     medianTps: 269,
     source: SOURCE,
     fetchedAt: FETCHED_AT,
@@ -106,6 +115,7 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     id: 'command-a-plus',
     displayName: 'Command A+',
     creator: 'Cohere',
+    family: 'specialists',
     medianTps: 241,
     source: SOURCE,
     fetchedAt: FETCHED_AT,
@@ -114,6 +124,7 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     id: 'deepseek-v4-1-flash-max',
     displayName: 'DeepSeek V4.1 Flash (max)',
     creator: 'DeepSeek',
+    family: 'deepseek',
     medianTps: 213,
     source: SOURCE,
     fetchedAt: FETCHED_AT,
@@ -122,6 +133,7 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     id: 'muse-spark-1-3-max',
     displayName: 'Muse Spark 1.3 (max)',
     creator: 'Meta',
+    family: 'specialists',
     medianTps: 206,
     source: SOURCE,
     fetchedAt: FETCHED_AT,
@@ -130,6 +142,7 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     id: 'gpt-5-5-instant',
     displayName: 'GPT-5.5 Instant',
     creator: 'OpenAI',
+    family: 'openai',
     medianTps: 129,
     note: 'Well-known mid-speed GPT chat SKU.',
     source: SOURCE,
@@ -139,6 +152,7 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     id: 'gpt-5-6-luna-max',
     displayName: 'GPT-5.6 Luna (max)',
     creator: 'OpenAI',
+    family: 'openai',
     medianTps: 112,
     source: SOURCE,
     fetchedAt: FETCHED_AT,
@@ -147,6 +161,7 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     id: 'claude-4-5-haiku',
     displayName: 'Claude 4.5 Haiku',
     creator: 'Anthropic',
+    family: 'anthropic',
     medianTps: 85,
     source: SOURCE,
     fetchedAt: FETCHED_AT,
@@ -155,6 +170,7 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     id: 'claude-sonnet-5-max',
     displayName: 'Claude Sonnet 5 (max)',
     creator: 'Anthropic',
+    family: 'anthropic',
     medianTps: 74,
     source: SOURCE,
     fetchedAt: FETCHED_AT,
@@ -164,6 +180,7 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     id: 'claude-fable-5-1-max',
     displayName: 'Claude Fable 5.1 (max)',
     creator: 'Anthropic',
+    family: 'anthropic',
     medianTps: 67,
     note: 'Frontier intelligence tier — slower for contrast.',
     source: SOURCE,
@@ -174,6 +191,7 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     id: 'gpt-6-astra-max',
     displayName: 'GPT-6 Astra (max)',
     creator: 'OpenAI',
+    family: 'openai',
     medianTps: 54,
     note: 'Frontier GPT tier — slower for contrast.',
     source: SOURCE,
@@ -184,6 +202,7 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     id: 'claude-opus-5-max',
     displayName: 'Claude Opus 5 (max)',
     creator: 'Anthropic',
+    family: 'anthropic',
     medianTps: 51,
     note: 'Frontier Claude tier — slower for contrast.',
     source: SOURCE,
@@ -194,6 +213,7 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     id: 'kimi-k3-max',
     displayName: 'Kimi K3 (max)',
     creator: 'Kimi',
+    family: 'specialists',
     medianTps: 38,
     note: 'Well-known long-context model, slower output for contrast.',
     source: SOURCE,
@@ -208,6 +228,20 @@ export const MODEL_SPEED_RANKINGS: ModelSpeedRanking[] = [...RANKING_ROWS].sort(
 
 export function findRanking(id: string): ModelSpeedRanking | undefined {
   return MODEL_SPEED_RANKINGS.find((row) => row.id === id);
+}
+
+export function rankingFamily(id: string | null | undefined): ModelFamilyId | undefined {
+  if (!id) return undefined;
+  return findRanking(id)?.family;
+}
+
+export function isSameFamily(
+  a: string | null | undefined,
+  b: string | null | undefined
+): boolean {
+  const familyA = rankingFamily(a);
+  const familyB = rankingFamily(b);
+  return familyA != null && familyA === familyB;
 }
 
 export function formatMedianTps(value: number): string {

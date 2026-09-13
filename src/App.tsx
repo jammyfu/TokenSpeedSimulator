@@ -11,6 +11,7 @@ import {
   MODEL_SPEED_RANKINGS,
   RANKING_SOURCE,
   findRanking,
+  isSameFamily,
   rankingToTps,
 } from './data/modelSpeedRankings';
 import { MAX_TPS } from './constants';
@@ -57,18 +58,24 @@ export default function App() {
   const handleSelect = useCallback((id: string) => {
     const row = findRanking(id);
     if (!row) return;
+    if (!isSameFamily(selectedId, id)) {
+      streamA.reset();
+    }
     setSelectedId(id);
     setTpsState(rankingToTps(row));
     if (compareId === id) {
       setCompareId(null);
     }
-  }, [compareId]);
+  }, [compareId, selectedId, streamA.reset]);
 
   const handleSetCompare = useCallback((id: string) => {
     if (id === selectedId) return;
+    if (!isSameFamily(compareId, id)) {
+      streamB.reset();
+    }
     setCompareId(id);
     setCompareEnabled(true);
-  }, [selectedId]);
+  }, [selectedId, compareId, streamB.reset]);
 
   const handleClearCompare = useCallback(() => {
     setCompareId(null);

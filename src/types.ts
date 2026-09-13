@@ -1,5 +1,14 @@
 export type Language = 'en' | 'zh';
 
+export type ModelFamilyId =
+  | 'openai'
+  | 'anthropic'
+  | 'google'
+  | 'spacexai'
+  | 'deepseek'
+  | 'alibaba'
+  | 'specialists';
+
 export interface Translation {
   title: string;
   description: string;
@@ -47,17 +56,30 @@ export interface Translation {
   contrastBadge: string;
   medianTps: string;
   creator: string;
+  familyOpenAI: string;
+  familyAnthropic: string;
+  familyGoogle: string;
+  familySpaceXAI: string;
+  familyDeepSeek: string;
+  familyAlibaba: string;
+  familySpecialists: string;
 }
 
 export interface ModelSpeedRanking {
   id: string;
   displayName: string;
   creator: string;
+  family: ModelFamilyId;
   medianTps: number;
   note?: string;
   source: string;
   fetchedAt: string;
   highlight?: 'fastest' | 'contrast';
+}
+
+export interface ModelFamilyGroup {
+  id: ModelFamilyId;
+  models: ModelSpeedRanking[];
 }
 
 export interface RankingSourceMeta {
