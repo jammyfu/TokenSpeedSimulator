@@ -44,7 +44,10 @@ export const Stats: React.FC<StatsProps> = ({
           <p className="text-sm font-mono font-semibold text-emerald-400 tabular-nums">{currentSpeed}</p>
         </div>
         {(costPerSecLabel || spentLabel) && (
-          <div className="col-span-3 flex justify-between gap-2 text-[10px] font-mono text-zinc-400">
+          <div
+            className="col-span-3 flex justify-between gap-2 text-[10px] font-mono text-zinc-400"
+            title={`${t.costPerSec} / ${t.costPerMin} / ${t.costPerHour}`}
+          >
             <span>
               {t.costPerSec} {costPerSecLabel ?? t.costNa}
             </span>

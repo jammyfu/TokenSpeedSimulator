@@ -71,6 +71,7 @@ export interface Translation {
   familySpecialists: string;
   costPerSec: string;
   costPerMin: string;
+  costPerHour: string;
   spent: string;
   costNa: string;
   costDisclaimer: string;

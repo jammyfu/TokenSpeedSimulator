@@ -141,7 +141,7 @@ export default function App() {
   const costPerSecLabel = racing
     ? `${rateA ? formatUsd(rateA.perSec) : t.costNa} / ${rateB ? formatUsd(rateB.perSec) : t.costNa}`
     : rateA
-      ? `${formatUsd(rateA.perSec)}/s · ${formatUsd(rateA.perMin)}/min`
+      ? `${formatUsd(rateA.perSec)}/s · ${formatUsd(rateA.perMin)}/min · ${formatUsd(rateA.perHour)}/h`
       : t.costNa;
   const spentLabel = racing
     ? `${spentA != null ? formatUsd(spentA) : t.costNa} / ${spentB != null ? formatUsd(spentB) : t.costNa}`
