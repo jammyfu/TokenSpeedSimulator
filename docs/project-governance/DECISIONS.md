@@ -3,7 +3,8 @@
 ## 2026-09-13
 
 - Present rankings by household model **line/family** (OpenAI/GPT, Anthropic/Claude, Google/Gemini, DeepSeek, plus speed specialists / other). Keep global AA rank numbers and median TPS; do not invent Grok/Qwen rows until they exist in the snapshot.
-- Clear streamed output only when the selected A or B **family** changes. Same-line SKU/TPS tweaks may keep text.
+- Clear streamed output only when the selected A or B **family** changes. Same-line SKU/TPS tweaks may keep text. Editing or URL-fetching source updates input only.
+- Source fetch uses a same-origin Vite `/api/fetch-page` proxy (dev/preview), then direct fetch, then a public reader fallback. Private/localhost URLs are rejected.
 - Treat Artificial Analysis public leaderboard **median output tokens/s** as the speed source of truth, stored as a curated snapshot (no API key).
 - Keep a short ranked set (~20): fastest AA callouts plus well-known mid/slow frontier models for contrast.
 - Ranking is the content; Play is the only primary action. A/B compare is optional and side-by-side.

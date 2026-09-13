@@ -63,6 +63,14 @@ export interface Translation {
   familyDeepSeek: string;
   familyAlibaba: string;
   familySpecialists: string;
+  sourceUrl: string;
+  sourceUrlPlaceholder: string;
+  sourceFetch: string;
+  sourceFetching: string;
+  sourceFetchError: string;
+  sourceFetchInvalid: string;
+  sourceFetchBlocked: string;
+  sourceFetchEmpty: string;
 }
 
 export interface ModelSpeedRanking {

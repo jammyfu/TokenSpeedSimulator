@@ -1,7 +1,8 @@
-import React from 'react';
-import { Gauge, Play, Pause, RotateCcw, Plus, Minus } from 'lucide-react';
+import React, { useState } from 'react';
+import { Gauge, Play, Pause, RotateCcw, Plus, Minus, Link2 } from 'lucide-react';
 import { Translation } from '../types';
 import { MAX_TPS, MIN_TPS, TPS_STEP } from '../constants';
+import { fetchSourcePage, SourceFetchError } from '../lib/fetchSourcePage';
 
 interface ControlsProps {
   t: Translation;
@@ -32,8 +33,35 @@ export const Controls: React.FC<ControlsProps> = ({
   setAutoMarkdown,
   lockedByRanking = false,
 }) => {
+  const [sourceUrl, setSourceUrl] = useState('');
+  const [fetching, setFetching] = useState(false);
+  const [fetchError, setFetchError] = useState<string | null>(null);
+
+  const fetchErrorMessage = (error: unknown): string => {
+    if (error instanceof SourceFetchError) {
+      if (error.code === 'invalid') return t.sourceFetchInvalid;
+      if (error.code === 'blocked') return t.sourceFetchBlocked;
+      if (error.code === 'empty') return t.sourceFetchEmpty;
+    }
+    return t.sourceFetchError;
+  };
+
+  const handleFetchSource = async () => {
+    if (fetching) return;
+    setFetching(true);
+    setFetchError(null);
+    try {
+      const page = await fetchSourcePage(sourceUrl);
+      setInputText(page.text);
+    } catch (error) {
+      setFetchError(fetchErrorMessage(error));
+    } finally {
+      setFetching(false);
+    }
+  };
+
   return (
-    <section className="shrink-0 space-y-3">
+    <section className="shrink-0 flex flex-col-reverse lg:flex-col gap-3">
       <div className="space-y-2">
         <label className="hidden sm:flex text-[10px] font-semibold uppercase tracking-wider text-zinc-500 items-center gap-1.5">
           <Gauge className="w-3.5 h-3.5" />
@@ -106,24 +134,60 @@ export const Controls: React.FC<ControlsProps> = ({
         </label>
       </div>
 
-      <details className="hidden sm:block group border-t border-white/5 pt-2">
+      <details className="group border-t border-white/5 pt-2">
         <summary className="text-[11px] text-zinc-500 cursor-pointer list-none flex items-center justify-between">
           <span>{t.sourceToggle}</span>
           <span className="text-zinc-600 group-open:rotate-180 transition-transform">▾</span>
         </summary>
         <div className="pt-2 space-y-1.5">
+          <div className="flex gap-1.5">
+            <label className="sr-only" htmlFor="source-url">
+              {t.sourceUrl}
+            </label>
+            <input
+              id="source-url"
+              type="url"
+              value={sourceUrl}
+              onChange={(e) => {
+                setSourceUrl(e.target.value);
+                if (fetchError) setFetchError(null);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  void handleFetchSource();
+                }
+              }}
+              placeholder={t.sourceUrlPlaceholder}
+              className="min-w-0 flex-1 bg-zinc-950 border border-white/10 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-emerald-500/50 transition-colors font-mono"
+            />
+            <button
+              type="button"
+              onClick={() => void handleFetchSource()}
+              disabled={fetching || !sourceUrl.trim()}
+              className="shrink-0 px-2.5 py-1.5 rounded-lg border border-white/10 bg-zinc-900 text-[11px] text-zinc-300 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1"
+            >
+              <Link2 className="w-3 h-3" />
+              {fetching ? t.sourceFetching : t.sourceFetch}
+            </button>
+          </div>
+          {fetchError && (
+            <p className="text-[10px] text-red-400" role="alert">
+              {fetchError}
+            </p>
+          )}
           <textarea
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             placeholder={t.placeholder}
             aria-label={t.sourceContent}
-            className="w-full h-24 bg-zinc-950 border border-white/10 rounded-lg p-2.5 text-xs focus:outline-none focus:border-emerald-500/50 transition-colors resize-none font-mono leading-relaxed"
+            className="w-full h-16 lg:h-24 bg-zinc-950 border border-white/10 rounded-lg p-2.5 text-xs focus:outline-none focus:border-emerald-500/50 transition-colors resize-none font-mono leading-relaxed"
           />
           <p className="text-[10px] text-zinc-600">{t.repeatNote}</p>
         </div>
       </details>
 
-      <div className="flex gap-2 pt-1">
+      <div className="flex gap-2">
         {!isStreaming ? (
           <button
             type="button"

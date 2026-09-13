@@ -206,7 +206,7 @@ export default function App() {
             onClearCompare={handleClearCompare}
             onToggleCompare={handleToggleCompare}
           />
-          <div className="shrink-0 min-w-0 px-3 pb-2 space-y-2 border-t border-white/5">
+          <div className="shrink-0 min-w-0 px-3 pb-2 space-y-2 border-t border-white/5 overflow-y-auto max-h-[14rem] lg:max-h-none">
             <p className="pt-2 text-[10px] text-zinc-500 truncate">
               {t.selectedModel}: {selected?.displayName ?? '—'}
               {racing && compare ? `  vs  ${compare.displayName}` : ''}

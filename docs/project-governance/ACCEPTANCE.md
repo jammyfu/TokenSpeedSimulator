@@ -8,5 +8,6 @@
 - Ranking snapshot is selectable and drives TPS; optional A/B compare works from Play.
 - Ranking rows are grouped by model line/family, not a single flat list.
 - Changing the A or B model line clears that pane’s streamed text.
+- Source text can be edited; a public URL can be fetched into the source box.
 - Layout fills the viewport and adapts from ~390px to desktop.
 - zh/en switcher persists and updates `html lang`.
