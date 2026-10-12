@@ -240,11 +240,7 @@ export function renderLlmsTxt(): string {
     '',
     '## Quotes',
     '',
-    `- zh: ${translations.zh.summary}`,
-    `- zh-Hant: ${translations['zh-Hant'].summary}`,
-    `- en: ${translations.en.summary}`,
-    `- ja: ${translations.ja.summary}`,
-    `- ko: ${translations.ko.summary}`,
+    ...HREFLANG.map((item) => `- ${item.code}: ${translations[item.lang].summary}`),
     '',
   );
   return lines.join('\n');

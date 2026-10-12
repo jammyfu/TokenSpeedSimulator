@@ -1,3 +1,4 @@
+import { withSample } from './addedLocales';
 import { sampleTexts } from './samples';
 import { Language, Translation } from '../types';
 
@@ -434,4 +435,9 @@ export const translations: Record<Language, Translation> = {
     sourceFetchBlocked: '이 주소는 불러올 수 없습니다.',
     sourceFetchEmpty: '이 페이지에는 읽을 글이 없습니다.',
   },
+  es: withSample('es'),
+  pt: withSample('pt'),
+  ro: withSample('ro'),
+  fr: withSample('fr'),
+  de: withSample('de'),
 };

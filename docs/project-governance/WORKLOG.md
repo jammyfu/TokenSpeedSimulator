@@ -9,6 +9,7 @@
 - Default model is GPT-5.5 Instant. Added GPT-6 Astra Ultrafast at OpenAI’s Codex ceiling of 300 t/s (Pro 500, up to 8×; API up to 6×). Pro Fast mode has no published Astra tokens/s. The ceiling is not treated as an AA median.
 - First paint uses the bubufu tools loading card: red mark, “正在加载工具…”, and the sliding bar. It leaves once the app is on screen.
 - Published the static build to https://bubufu.com/tools/token-speed-simulator/. Locale pages, assets, sitemap, and llms.txt match the local dist hashes. The previous directory is in `/opt/stack/backups/token-speed-simulator-20261013-pre.tar.gz`.
+- Added Spanish, Portuguese, Romanian, French, and German to match the main site. Each locale has UI copy, the long default text, crawlable FAQ, hreflang, and JSON-LD. Catalog summaries are the live Bubufu lines.
 
 ## 2026-10-12
 

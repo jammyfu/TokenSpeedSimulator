@@ -10,6 +10,11 @@ const languageOptions: { id: Language; label: string }[] = [
   { id: 'en', label: '🇺🇸 English' },
   { id: 'ja', label: '🇯🇵 日本語' },
   { id: 'ko', label: '🇰🇷 한국어' },
+  { id: 'es', label: '🇪🇸 Español' },
+  { id: 'pt', label: '🇵🇹 Português' },
+  { id: 'ro', label: '🇷🇴 Română' },
+  { id: 'fr', label: '🇫🇷 Français' },
+  { id: 'de', label: '🇩🇪 Deutsch' },
 ];
 
 interface HeaderProps {

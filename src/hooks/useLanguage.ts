@@ -4,7 +4,7 @@ import { translations } from '../i18n/translations';
 import { applyDocumentSeo, languageFromPath, navigateToPreference, pathForPreference } from '../seo/applyDocumentSeo';
 import { Language, LanguagePreference } from '../types';
 
-const LANGUAGES: readonly Language[] = ['zh', 'zh-Hant', 'en', 'ja', 'ko'];
+const LANGUAGES: readonly Language[] = ['zh', 'zh-Hant', 'en', 'ja', 'ko', 'es', 'pt', 'ro', 'fr', 'de'];
 
 export function isLanguage(value: string | null | undefined): value is Language {
   return !!value && (LANGUAGES as readonly string[]).includes(value);
@@ -50,7 +50,7 @@ function browserLanguage(): Language {
     if (!raw) continue;
     if (/^zh-(hant|hk|tw|mo)(-|$)/i.test(raw)) return 'zh-Hant';
     const base = raw.toLowerCase().split('-')[0];
-    if (base === 'zh' || base === 'en' || base === 'ja' || base === 'ko') return base;
+    if (isLanguage(base)) return base;
   }
   return DEFAULT_LANGUAGE;
 }

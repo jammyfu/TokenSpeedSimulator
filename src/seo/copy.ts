@@ -1,3 +1,4 @@
+import { addedSeo } from '../i18n/addedLocales';
 import { translations } from '../i18n/translations';
 import { Language } from '../types';
 
@@ -66,7 +67,7 @@ export const seoCopy: Record<Language, SeoCopy> = {
       },
       {
         q: '有哪些语言？',
-        a: '简体中文、繁體中文、English、日本語、한국어。选「自动」时跟随浏览器；选了具体语言会写进 bubufu-language，并打开对应地址。',
+        a: '简体中文、繁體中文、English、日本語、한국어、Español、Português、Română、Français、Deutsch。选「自动」时跟随浏览器；选了具体语言会写进 bubufu-language，并打开对应地址。',
       },
     ],
     languagesLabel: '语言版本',
@@ -117,7 +118,7 @@ export const seoCopy: Record<Language, SeoCopy> = {
       },
       {
         q: '有哪些語言？',
-        a: '簡體中文、繁體中文、English、日本語、한국어。選「自動識別」時跟隨瀏覽器；選了具體語言會寫進 bubufu-language，並打開對應地址。',
+        a: '簡體中文、繁體中文、English、日本語、한국어、Español、Português、Română、Français、Deutsch。選「自動識別」時跟隨瀏覽器；選了具體語言會寫進 bubufu-language，並打開對應地址。',
       },
     ],
     languagesLabel: '語言版本',
@@ -169,7 +170,7 @@ export const seoCopy: Record<Language, SeoCopy> = {
       },
       {
         q: 'Which languages are available?',
-        a: 'Simplified Chinese, Traditional Chinese, English, Japanese, and Korean. Auto follows the browser. A specific language is saved in the bubufu-language cookie and opens that language URL.',
+        a: 'Simplified Chinese, Traditional Chinese, English, Japanese, Korean, Spanish, Portuguese, Romanian, French, and German. Auto follows the browser. A specific language is saved in the bubufu-language cookie and opens that language URL.',
       },
     ],
     languagesLabel: 'Languages',
@@ -221,7 +222,7 @@ export const seoCopy: Record<Language, SeoCopy> = {
       },
       {
         q: '対応言語は？',
-        a: '簡体字、繁体字、英語、日本語、韓国語です。自動検出はブラウザに従います。言語を指定すると bubufu-language に保存し、その言語のアドレスを開きます。',
+        a: '簡体字、繁体字、英語、日本語、韓国語、スペイン語、ポルトガル語、ルーマニア語、フランス語、ドイツ語です。自動検出はブラウザに従います。言語を指定すると bubufu-language に保存し、その言語のアドレスを開きます。',
       },
     ],
     languagesLabel: '言語',
@@ -273,13 +274,14 @@ export const seoCopy: Record<Language, SeoCopy> = {
       },
       {
         q: '어떤 언어를 지원하나요?',
-        a: '간체 중국어, 번체 중국어, 영어, 일본어, 한국어입니다. 자동 감지는 브라우저를 따릅니다. 언어를 고르면 bubufu-language 쿠키에 저장하고 그 언어 주소로 이동합니다.',
+        a: '간체 중국어, 번체 중국어, 영어, 일본어, 한국어, 스페인어, 포르투갈어, 루마니아어, 프랑스어, 독일어입니다. 자동 감지는 브라우저를 따릅니다. 언어를 고르면 bubufu-language 쿠키에 저장하고 그 언어 주소로 이동합니다.',
       },
     ],
     languagesLabel: '언어',
     sourceLabel: '출처',
     updatedLabel: '페이지 업데이트',
   },
+  ...addedSeo,
 };
 
 export function titleTag(lang: Language): string {

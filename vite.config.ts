@@ -116,7 +116,7 @@ function pageFetchPlugin(): Plugin {
 
 function seoPagesPlugin(): Plugin {
   const indexPath = path.resolve(__dirname, 'index.html');
-  const extraLocales: Language[] = ['zh-Hant', 'en', 'ja', 'ko'];
+  const extraLocales: Language[] = ['zh-Hant', 'en', 'ja', 'ko', 'es', 'pt', 'ro', 'fr', 'de'];
 
   const serveLocale = async (
     req: IncomingMessage,
