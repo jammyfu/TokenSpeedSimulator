@@ -19,7 +19,8 @@ function sendJson(res: ServerResponse, status: number, body: unknown) {
 function pageFetchPlugin(): Plugin {
   const handler = async (req: IncomingMessage, res: ServerResponse, next: () => void) => {
     const url = req.url ?? '';
-    if (!url.startsWith('/api/fetch-page')) {
+    const path = url.split('?')[0] ?? '';
+    if (path !== '/api/fetch-page' && !path.endsWith('/api/fetch-page')) {
       next();
       return;
     }
@@ -112,7 +113,9 @@ function pageFetchPlugin(): Plugin {
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
   return {
+    base: '/tools/token-speed-simulator/',
     plugins: [react(), tailwindcss(), pageFetchPlugin()],
+    build: { sourcemap: false },
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
     },

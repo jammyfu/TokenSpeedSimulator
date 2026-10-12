@@ -1,5 +1,16 @@
 # DECISIONS.md
 
+## 2026-10-12
+
+- The simulator uses the same five locales as bubufu.com: `zh`, `zh-Hant`, `en`, `ja`, `ko`.
+- Product lines match the live site: 「看见人工智能的响应节奏。」 / “See the pace of AI.” and the longer catalog sentence in each language.
+- Language follows the `bubufu-language` cookie, then the bubufu referrer path, then the browser. Changing it here writes the same cookie.
+- The public app stays at `https://bubufu.com/tools/token-speed-simulator/`.
+
+## 2026-09-03 · 主站工具部署
+
+- 工具继续挂在主站子路径，免费、可直接使用，不接入收费。
+
 ## 2026-09-13
 
 - Present rankings by household model **line/family** (OpenAI/GPT, Anthropic/Claude, Google/Gemini, SpaceXAI/Grok, DeepSeek, Alibaba/Qwen, Z AI/GLM, Kimi, MiniMax, plus speed specialists / other). Keep global AA rank numbers and median TPS. Skip Doubao/ERNIE until AA publishes a median Tokens/s.

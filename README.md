@@ -14,12 +14,12 @@
 
 - Positioning: Interactive visualization tool for LLM token streaming speed and perceived responsiveness.
 - Stack: Vite + TypeScript frontend.
-- Current goal: Family-grouped AA rankings with line-change output clear, compare race, fullscreen shell, and zh/en switching.
+- Current goal: Same five languages and the same plain voice as bubufu.com, on the latest ranking build.
 <!-- END:personal-project-standard-entry -->
 
-# Token 输出速度演示 (Token Speed Simulator)
+# Token 速度模拟 (Token Speed Simulator)
 
-一个旨在可视化大语言模型 (LLM) 流式输出速度的工具。通过调整每秒 Token 数 (TPS)，用户可以直观地感受到不同 AI 模型的响应流畅度。
+看见人工智能的响应节奏。用实时 Token 流比较不同输出速度。语言与 bubufu.com 一致：简体中文、繁體中文、English、日本語、한국어。
 
 ## 🚀 核心特性
 
@@ -28,7 +28,7 @@
 - **源文本可编辑**: 可直接改示例文本，或粘贴公开页面 URL 抓取正文后再播放。
 - **可看、可对比**: 主舞台是流式输出；可选 A/B 并排竞速，一个「播放」按钮。
 - **全屏自适应**: 铺满视口（100dvh），手机到桌面切换为上下/左右布局。
-- **中英切换**: zh/en 文案单一来源，语言选择会记住并更新 `html lang`。
+- **五种语言**: 与 bubufu.com 相同的简体中文、繁體中文、English、日本語、한국어。打开时跟随站点的 `bubufu-language` Cookie；在这里改语言，也会写回这个 Cookie。
 - **实时速度控制**: 支持 1–2000 TPS，覆盖当前 AA 最快模型并留出余量。
 - **动态渲染**: 内置 Markdown 渲染，模拟真实流式格式。
 

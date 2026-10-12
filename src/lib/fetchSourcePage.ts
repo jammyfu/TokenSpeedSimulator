@@ -51,7 +51,8 @@ async function extractFromResponse(res: Response, sourceUrl: string): Promise<Fe
 export async function fetchSourcePage(rawUrl: string): Promise<FetchedSourcePage> {
   const parsed = parsePublicHttpUrl(rawUrl);
   const href = parsed.href;
-  const apiUrl = `/api/fetch-page?url=${encodeURIComponent(href)}`;
+  const base = (import.meta as { env?: { BASE_URL?: string } }).env?.BASE_URL ?? '/';
+  const apiUrl = `${base}api/fetch-page?url=${encodeURIComponent(href)}`;
 
   try {
     const apiRes = await fetch(apiUrl);

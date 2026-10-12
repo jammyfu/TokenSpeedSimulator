@@ -5,4 +5,5 @@ export const MAX_TPS = 2000;
 export const MIN_TPS = 1;
 export const TPS_STEP = 5;
 export const LANG_STORAGE_KEY = 'token-speed-simulator:lang';
-export const DEFAULT_LANGUAGE = 'zh' as const;
+export const SITE_LANGUAGE_COOKIE = 'bubufu-language';
+export const DEFAULT_LANGUAGE = 'en' as const;

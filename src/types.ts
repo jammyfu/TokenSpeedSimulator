@@ -1,4 +1,4 @@
-export type Language = 'en' | 'zh';
+export type Language = 'zh' | 'zh-Hant' | 'en' | 'ja' | 'ko';
 
 export type ModelFamilyId =
   | 'openai'
@@ -15,6 +15,8 @@ export type ModelFamilyId =
 export interface Translation {
   title: string;
   description: string;
+  summary: string;
+  back: string;
   speedConfig: string;
   tps: string;
   sourceContent: string;

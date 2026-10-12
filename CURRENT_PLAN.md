@@ -20,7 +20,15 @@ Polish the watchable AA ranking demo: group models by mainstream lines/families,
 
 - Live Artificial Analysis API fetch (requires a key).
 - Adding Grok/Qwen rows that are not in the current snapshot.
-- Locales beyond zh/en.
+- A visual restyle of the dark stage to the bubufu paper theme.
+
+## Language alignment (2026-10-12)
+
+- [x] Fast-forward to the latest ranking build, including family groups, source fetch, and cost readouts.
+- [x] Use bubufu.com’s five languages and the same short product lines.
+- [x] Follow the `bubufu-language` cookie, and write it back when the language changes here.
+- [x] Publish under `/tools/token-speed-simulator/` with the bubufu canonical URL.
+- [x] Run `npm run lint` and `npm run build`. Browser-checked zh, en (cookie), ja, and zh-Hant.
 
 ## Verification
 
