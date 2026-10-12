@@ -1,6 +1,7 @@
 import { addedSeo } from '../i18n/addedLocales';
 import { translations } from '../i18n/translations';
 import { Language } from '../types';
+import { extraSeo } from '../i18n/extraLocales';
 
 export interface SeoCopy {
   ogLocale: string;

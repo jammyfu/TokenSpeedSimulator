@@ -1,5 +1,6 @@
 import { addedSamples } from './addedLocales';
 import { Language } from '../types';
+import { extraSamples } from './extraLocales';
 
 /** Default source text. The same introduction, written for each live locale. */
 export const sampleTexts: Record<Language, string> = {
