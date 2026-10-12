@@ -17,6 +17,11 @@ Page updated: 2026-10-13
 - [Token simulator](https://bubufu.com/tools/token-speed-simulator/en/): Simulate real-time token streams to compare AI response pacing and perceived responsiveness.
 - [Token速度シミュレーター](https://bubufu.com/tools/token-speed-simulator/ja/): トークンのストリーミングを再現し、AI の応答速度や体感を比較。
 - [Token 속도 시뮬레이터](https://bubufu.com/tools/token-speed-simulator/ko/): 실시간 토큰 스트림으로 AI 응답 속도와 체감 반응성을 비교하세요.
+- [Simulador de tokens](https://bubufu.com/tools/token-speed-simulator/es/): Simula flujos de tokens en tiempo real y compara el ritmo y la fluidez de las respuestas de la IA.
+- [Simulador de tokens](https://bubufu.com/tools/token-speed-simulator/pt/): Simule fluxos de tokens em tempo real e compare o ritmo e a fluidez das respostas da IA.
+- [Simulator de tokeni](https://bubufu.com/tools/token-speed-simulator/ro/): Simulează fluxuri de tokeni în timp real și compară ritmul și fluența răspunsurilor AI.
+- [Simulateur de tokens](https://bubufu.com/tools/token-speed-simulator/fr/): Simulez des flux de tokens en temps réel et comparez le rythme et la fluidité des réponses de l’IA.
+- [Token-Simulator](https://bubufu.com/tools/token-speed-simulator/de/): Simuliere Token-Ströme in Echtzeit und vergleiche Tempo und Flüssigkeit von KI-Antworten.
 
 ## Quotes
 
@@ -25,3 +30,8 @@ Page updated: 2026-10-13
 - en: Simulate real-time token streams to compare AI response pacing and perceived responsiveness.
 - ja: トークンのストリーミングを再現し、AI の応答速度や体感を比較。
 - ko: 실시간 토큰 스트림으로 AI 응답 속도와 체감 반응성을 비교하세요.
+- es: Simula flujos de tokens en tiempo real y compara el ritmo y la fluidez de las respuestas de la IA.
+- pt: Simule fluxos de tokens em tempo real e compare o ritmo e a fluidez das respostas da IA.
+- ro: Simulează fluxuri de tokeni în timp real și compară ritmul și fluența răspunsurilor AI.
+- fr: Simulez des flux de tokens en temps réel et comparez le rythme et la fluidité des réponses de l’IA.
+- de: Simuliere Token-Ströme in Echtzeit und vergleiche Tempo und Flüssigkeit von KI-Antworten.

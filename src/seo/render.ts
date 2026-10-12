@@ -245,6 +245,11 @@ export function renderLlmsTxt(): string {
     `- en: ${translations.en.summary}`,
     `- ja: ${translations.ja.summary}`,
     `- ko: ${translations.ko.summary}`,
+    `- es: ${translations.es.summary}`,
+    `- pt: ${translations.pt.summary}`,
+    `- ro: ${translations.ro.summary}`,
+    `- fr: ${translations.fr.summary}`,
+    `- de: ${translations.de.summary}`,
     '',
   );
   return lines.join('\n');
