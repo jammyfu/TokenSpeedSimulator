@@ -32,9 +32,7 @@ const SLUG_LANG: Record<string, Language> = {
 };
 
 export function htmlLang(lang: Language): string {
-  if (lang === 'zh') return 'zh-CN';
-  if (lang === 'pt') return 'pt-PT';
-  return lang;
+  return lang === 'zh' ? 'zh-CN' : lang;
 }
 
 export function pageUrl(lang: Language): string {
