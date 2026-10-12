@@ -23,12 +23,13 @@
 
 ## 🚀 核心特性
 
-- **权威排行定速**: 内置 [Artificial Analysis](https://artificialanalysis.ai/leaderboards/models) 中位输出 tokens/s 快照（2026-09-13），按主流中西系列分组（含通义、GLM、Kimi、MiniMax、Grok），点选即可按该速度播放。切换到不同系列会清空舞台文本。
+- **权威排行定速**: 内置 [Artificial Analysis](https://artificialanalysis.ai/leaderboards/models) 中位输出 tokens/s 快照（2026-10-12），按主流中西系列分组（含通义、GLM、Kimi、MiniMax、Grok），点选即可按该速度播放。切换到不同系列会清空舞台文本。
 - **速度×标价**: 有 AA 输出单价的模型会显示 $/百万 Token、每秒/每分钟燃烧率和累计花费。
 - **源文本可编辑**: 可直接改示例文本，或粘贴公开页面 URL 抓取正文后再播放。
 - **可看、可对比**: 主舞台是流式输出；可选 A/B 并排竞速，一个「播放」按钮。
 - **全屏自适应**: 铺满视口（100dvh），手机到桌面切换为上下/左右布局。
-- **五种语言**: 与 bubufu.com 相同的简体中文、繁體中文、English、日本語、한국어。打开时跟随站点的 `bubufu-language` Cookie；在这里改语言，也会写回这个 Cookie。
+- **五种语言**: 与 bubufu.com 相同的简体中文、繁體中文、English、日本語、한국어，并提供「自动」。自动跟随浏览器；指定语言会写回 `bubufu-language`。默认原文是同一篇工具介绍的对应语言版本。
+- **语言地址与说明**: 简体在 `/tools/token-speed-simulator/`，繁体、英文、日文、韩文在 `zh-hant`、`en`、`ja`、`ko`。每页有独立标题、说明、FAQ、hreflang 和结构化数据。`llms.txt` 给生成式引擎一份可引用的说明。
 - **实时速度控制**: 支持 1–2000 TPS，覆盖当前 AA 最快模型并留出余量。
 - **动态渲染**: 内置 Markdown 渲染，模拟真实流式格式。
 

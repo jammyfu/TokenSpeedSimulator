@@ -30,8 +30,28 @@ const FAMILY_LABEL_KEY: Record<ModelFamilyId, keyof Translation> = {
   specialists: 'familySpecialists',
 };
 
+const LINE_NAME: Record<ModelFamilyId, string> = {
+  openai: 'GPT',
+  anthropic: 'Claude',
+  google: 'Gemini',
+  spacexai: 'Grok',
+  deepseek: 'DeepSeek',
+  alibaba: 'Qwen',
+  zai: 'GLM',
+  kimi: 'Kimi',
+  minimax: 'MiniMax',
+  specialists: 'Other',
+};
+
 export function getFamilyLabel(t: Translation, id: ModelFamilyId): string {
   return String(t[FAMILY_LABEL_KEY[id]]);
+}
+
+/** Short name for the model-line dropdown: GPT, Claude, and the rest. */
+export function getLineLabel(t: Translation, id: ModelFamilyId): string {
+  if (id === 'alibaba') return t.lineAlibaba;
+  if (id === 'specialists') return t.lineOther;
+  return LINE_NAME[id];
 }
 
 export function groupRankingsByFamily(rows: ModelSpeedRanking[]): ModelFamilyGroup[] {

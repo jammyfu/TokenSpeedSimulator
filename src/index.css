@@ -1,24 +1,158 @@
 @import "tailwindcss";
 
+/* Same tokens as bubufu.com refined.css. data-theme is light or dark. */
+:root {
+  color-scheme: light;
+  --paper: #f5f5f7;
+  --ink: #1d1d1f;
+  --muted: #6e6e73;
+  --text-secondary: #606066;
+  --red: #bd302b;
+  --line: #dedee3;
+  --surface: #fff;
+  --field: #fff;
+  --subtle: #ececef;
+  --hover: #e8e8ed;
+  --selected: #f5e8e6;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --paper: #101012;
+  --ink: #f5f5f7;
+  --muted: #a1a1a8;
+  --text-secondary: #b6b6bf;
+  --red: #ff625b;
+  --line: #303034;
+  --surface: #1c1c1f;
+  --field: #232326;
+  --subtle: #27272b;
+  --hover: #323237;
+  --selected: #452a2b;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-secondary: var(--text-secondary);
+  --color-line: var(--line);
+  --color-surface: var(--surface);
+  --color-field: var(--field);
+  --color-subtle: var(--subtle);
+  --color-hover: var(--hover);
+  --color-selected: var(--selected);
+  --color-accent: var(--red);
+  --font-sans: Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 3px;
+}
+
 html,
-body,
+body {
+  min-height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: var(--paper);
+  color: var(--ink);
+  letter-spacing: -0.012em;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+
 #root {
-  height: 100%;
   height: 100dvh;
   max-width: 100%;
   overflow: hidden;
   overscroll-behavior: none;
 }
 
+#guide {
+  color: var(--ink);
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  padding: 2.75rem 1.25rem 4.5rem;
+}
+
+#guide .guide-wrap {
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+#guide h1,
+#guide h2,
+#guide h3 {
+  color: var(--ink);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+#guide h1 {
+  font-size: 1.35rem;
+  margin: 0 0 0.75rem;
+}
+
+#guide h2 {
+  font-size: 1rem;
+  margin: 1.75rem 0 0.7rem;
+}
+
+#guide h3 {
+  font-size: 0.95rem;
+  margin: 1.1rem 0 0.35rem;
+}
+
+#guide p,
+#guide li {
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+#guide ol {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+#guide li + li {
+  margin-top: 0.35rem;
+}
+
+#guide a {
+  color: var(--red);
+}
+
+#guide .guide-langs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+}
+
+#guide .guide-source {
+  margin-top: 1.75rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
 @layer base {
   .markdown-body {
-    @apply text-zinc-300;
+    color: var(--ink);
   }
 
   .markdown-body h1,
   .markdown-body h2,
   .markdown-body h3 {
-    @apply text-white font-bold mt-6 mb-4;
+    color: var(--ink);
+    font-weight: 700;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   .markdown-body h1 {
@@ -52,24 +186,46 @@ body,
 
   /* 修改行内代码颜色，不再默认使用明亮的绿色 */
   .markdown-body code {
-    @apply bg-zinc-800 px-1.5 py-0.5 rounded text-zinc-200 font-mono text-[0.9em] border border-white/5;
+    background: var(--subtle);
+    color: var(--ink);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-family: ui-monospace, monospace;
+    font-size: 0.9em;
+    border: 1px solid var(--line);
   }
 
   .markdown-body pre {
-    @apply bg-zinc-900 p-4 rounded-xl mb-4 overflow-x-auto border border-white/5;
+    background: var(--surface);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+    border: 1px solid var(--line);
   }
 
   .markdown-body pre code {
-    @apply bg-transparent p-0 text-zinc-300 text-sm border-none;
+    background: transparent;
+    padding: 0;
+    color: var(--ink);
+    font-size: 0.875rem;
+    border: none;
   }
 
   .markdown-body blockquote {
-    @apply border-l-4 border-emerald-500/30 pl-4 italic text-zinc-400 mb-4;
+    border-left: 4px solid color-mix(in srgb, var(--red) 40%, transparent);
+    padding-left: 1rem;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 1rem;
   }
 
-  /* 链接颜色改为更柔和的色调 */
   .markdown-body a {
-    @apply text-emerald-400/80 hover:text-emerald-400 hover:underline;
+    color: var(--red);
+  }
+
+  .markdown-body a:hover {
+    text-decoration: underline;
   }
 
   .markdown-body table {
@@ -78,15 +234,19 @@ body,
 
   .markdown-body th,
   .markdown-body td {
-    @apply border border-white/10 p-2 text-sm;
+    border: 1px solid var(--line);
+    padding: 0.5rem;
+    font-size: 0.875rem;
   }
 
   .markdown-body th {
-    @apply bg-white/5 font-bold;
+    background: var(--subtle);
+    font-weight: 700;
   }
 
   .markdown-body hr {
-    @apply border-white/10 my-6;
+    border-color: var(--line);
+    margin: 1.5rem 0;
   }
 
   /* 使得闪烁的光标跟随在最后一段文字后面 */

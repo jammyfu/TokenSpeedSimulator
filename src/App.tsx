@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Controls } from './components/Controls';
+import { SourceEditor } from './components/SourceEditor';
 import { Stats } from './components/Stats';
 import { OutputDisplay } from './components/OutputDisplay';
 import { RankingList } from './components/RankingList';
@@ -17,13 +18,13 @@ import {
 import { MAX_TPS } from './constants';
 import { cumulativeCostUsd, formatUsd, streamingCostUsd } from './lib/tokenCost';
 import { translations } from './i18n/translations';
-import { Language } from './types';
 
-const DEFAULT_MODEL_ID = MODEL_SPEED_RANKINGS[0]?.id ?? 'celeris-1';
+const DEFAULT_MODEL_ID = 'gpt-5-5-instant';
 
 export default function App() {
-  const { lang, setLang, t } = useLanguage();
+  const { lang, preference, setPreference, t } = useLanguage();
   const [inputText, setInputText] = useState(() => translations[lang].sampleText);
+  const defaultSample = useRef(translations[lang].sampleText);
   const [selectedId, setSelectedId] = useState<string>(DEFAULT_MODEL_ID);
   const [compareId, setCompareId] = useState<string | null>(null);
   const [compareEnabled, setCompareEnabled] = useState(false);
@@ -47,14 +48,12 @@ export default function App() {
     setTpsState(Math.min(MAX_TPS, Math.max(0, value)));
   }, []);
 
-  const handleLanguageChange = useCallback(
-    (next: Language) => {
-      const previousSample = translations[lang].sampleText;
-      setLang(next);
-      setInputText((current) => (current === previousSample ? translations[next].sampleText : current));
-    },
-    [lang, setLang]
-  );
+  useEffect(() => {
+    const previous = defaultSample.current;
+    const nextSample = translations[lang].sampleText;
+    defaultSample.current = nextSample;
+    setInputText((current) => (current === previous ? nextSample : current));
+  }, [lang]);
 
   const handleSelect = useCallback((id: string) => {
     const row = findRanking(id);
@@ -150,13 +149,13 @@ export default function App() {
       : t.costNa;
 
   return (
-    <div className="h-dvh w-full overflow-hidden bg-[#0a0a0a] text-[#e0e0e0] font-sans selection:bg-emerald-500/30 flex flex-col">
-      <Header t={t} lang={lang} onLanguageChange={handleLanguageChange} />
+    <div className="h-dvh w-full overflow-hidden bg-paper text-ink font-sans selection:bg-accent/30 flex flex-col">
+      <Header t={t} lang={lang} preference={preference} onLanguageChange={setPreference} />
 
       <div className="flex-1 min-h-0 min-w-0 grid grid-rows-[minmax(0,1fr)_auto] lg:grid-rows-1 lg:grid-cols-[minmax(0,1fr)_22rem] xl:grid-cols-[minmax(0,1fr)_24rem]">
-        <section className="min-h-0 min-w-0 p-2 md:p-3">
+        <section className="min-h-0 min-w-0 p-2 md:p-3 flex flex-col gap-2">
           {racing ? (
-            <div className="h-full min-h-0 grid grid-cols-2 gap-2">
+            <div className="flex-1 min-h-0 grid grid-cols-2 gap-2">
               <OutputDisplay
                 t={t}
                 streamedText={streamA.streamedText}
@@ -193,25 +192,28 @@ export default function App() {
               />
             </div>
           ) : (
-            <OutputDisplay
-              t={t}
-              streamedText={streamA.streamedText}
-              isStreaming={streamA.isStreaming}
-              onClear={streamA.clearOutput}
-              onCopy={() => copyPane(streamA.streamedText, 'a')}
-              copied={copiedA}
-              autoMarkdown={autoMarkdown}
-              label={selected ? selected.displayName : undefined}
-              creator={selected?.creator}
-              targetTps={selected?.medianTps ?? tps}
-              liveSpeed={streamA.currentSpeed}
-              tokensCount={streamA.tokensCount}
-              spentLabel={spentA != null ? formatUsd(spentA) : undefined}
-            />
+            <div className="flex-1 min-h-0">
+              <OutputDisplay
+                t={t}
+                streamedText={streamA.streamedText}
+                isStreaming={streamA.isStreaming}
+                onClear={streamA.clearOutput}
+                onCopy={() => copyPane(streamA.streamedText, 'a')}
+                copied={copiedA}
+                autoMarkdown={autoMarkdown}
+                label={selected ? selected.displayName : undefined}
+                creator={selected?.creator}
+                targetTps={selected?.medianTps ?? tps}
+                liveSpeed={streamA.currentSpeed}
+                tokensCount={streamA.tokensCount}
+                spentLabel={spentA != null ? formatUsd(spentA) : undefined}
+              />
+            </div>
           )}
+          <SourceEditor t={t} inputText={inputText} setInputText={setInputText} />
         </section>
 
-        <aside className="w-full min-h-0 min-w-0 max-h-[46dvh] lg:max-h-none flex flex-col overflow-hidden border-t lg:border-t-0 lg:border-l border-white/10 bg-[#0a0a0a]">
+        <aside className="w-full min-h-0 min-w-0 max-h-[46dvh] lg:max-h-none flex flex-col overflow-hidden border-t lg:border-t-0 lg:border-l border-line bg-paper">
           <RankingList
             t={t}
             rankings={MODEL_SPEED_RANKINGS}
@@ -224,8 +226,8 @@ export default function App() {
             onClearCompare={handleClearCompare}
             onToggleCompare={handleToggleCompare}
           />
-          <div className="shrink-0 min-w-0 px-3 pb-2 space-y-2 border-t border-white/5 overflow-y-auto max-h-[14rem] lg:max-h-none">
-            <p className="pt-2 text-[10px] text-zinc-500 truncate">
+          <div className="shrink-0 min-w-0 px-3 pb-2 space-y-2 border-t border-line overflow-y-auto max-h-[14rem] lg:max-h-none">
+            <p className="pt-2 text-[10px] text-muted truncate">
               {t.selectedModel}: {selected?.displayName ?? '—'}
               {racing && compare ? `  vs  ${compare.displayName}` : ''}
             </p>
@@ -244,8 +246,6 @@ export default function App() {
               t={t}
               tps={tps}
               setTps={setTps}
-              inputText={inputText}
-              setInputText={setInputText}
               isStreaming={isStreaming}
               onStart={handleStart}
               onStop={handleStop}

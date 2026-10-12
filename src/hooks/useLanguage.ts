@@ -1,16 +1,13 @@
 import { useCallback, useEffect, useState } from 'react';
 import { DEFAULT_LANGUAGE, LANG_STORAGE_KEY, SITE_LANGUAGE_COOKIE } from '../constants';
 import { translations } from '../i18n/translations';
-import { Language } from '../types';
+import { applyDocumentSeo, languageFromPath, navigateToPreference, pathForPreference } from '../seo/applyDocumentSeo';
+import { Language, LanguagePreference } from '../types';
 
 const LANGUAGES: readonly Language[] = ['zh', 'zh-Hant', 'en', 'ja', 'ko'];
 
 export function isLanguage(value: string | null | undefined): value is Language {
   return !!value && (LANGUAGES as readonly string[]).includes(value);
-}
-
-function htmlLang(lang: Language): string {
-  return lang === 'zh' ? 'zh-CN' : lang;
 }
 
 function readCookie(): Language | 'auto' | null {
@@ -27,6 +24,11 @@ function readCookie(): Language | 'auto' | null {
   } catch {
     return null;
   }
+}
+
+function readPreference(): LanguagePreference {
+  const cookie = readCookie();
+  return isLanguage(cookie) ? cookie : 'auto';
 }
 
 function referrerLanguage(): Language | null {
@@ -53,36 +55,55 @@ function browserLanguage(): Language {
   return DEFAULT_LANGUAGE;
 }
 
-function resolveLanguage(): Language {
-  const cookie = readCookie();
-  if (isLanguage(cookie)) return cookie;
-  return referrerLanguage() ?? browserLanguage();
+function languageFor(preference: LanguagePreference, allowReferrer: boolean): Language {
+  if (preference !== 'auto') return preference;
+  if (allowReferrer) return referrerLanguage() ?? browserLanguage();
+  return browserLanguage();
 }
 
-function writePreference(lang: Language) {
+function writePreference(preference: LanguagePreference) {
   try {
-    window.localStorage.setItem(LANG_STORAGE_KEY, lang);
+    window.localStorage.setItem(LANG_STORAGE_KEY, preference);
   } catch {
     // Ignore blocked storage.
   }
   const secure = window.location.protocol === 'https:' ? '; Secure' : '';
-  document.cookie = `${SITE_LANGUAGE_COOKIE}=${lang}; Path=/; Max-Age=31536000; SameSite=Lax${secure}`;
+  document.cookie = `${SITE_LANGUAGE_COOKIE}=${preference}; Path=/; Max-Age=31536000; SameSite=Lax${secure}`;
 }
 
 export function useLanguage() {
-  const [lang, setLangState] = useState<Language>(resolveLanguage);
+  const fromPath = languageFromPath();
+  const [preference, setPreferenceState] = useState<LanguagePreference>(fromPath ?? readPreference);
+  const [lang, setLangState] = useState<Language>(() => fromPath ?? languageFor(readPreference(), true));
   const t = translations[lang];
 
   useEffect(() => {
-    document.documentElement.lang = htmlLang(lang);
-    document.title = `${t.title} · ${t.description}`;
-    document.querySelector('meta[name="description"]')?.setAttribute('content', t.summary);
-  }, [lang, t]);
+    applyDocumentSeo(lang);
+  }, [lang]);
 
-  const setLang = useCallback((next: Language) => {
-    setLangState(next);
+  useEffect(() => {
+    if (fromPath) {
+      writePreference(fromPath);
+      return;
+    }
+    if (preference !== 'auto' && preference !== 'zh') {
+      window.location.replace(pathForPreference(preference));
+    }
+  }, [fromPath, preference]);
+
+  useEffect(() => {
+    if (preference !== 'auto' || fromPath) return;
+    const apply = () => setLangState(browserLanguage());
+    window.addEventListener('languagechange', apply);
+    return () => window.removeEventListener('languagechange', apply);
+  }, [preference, fromPath]);
+
+  const setPreference = useCallback((next: LanguagePreference) => {
     writePreference(next);
+    if (navigateToPreference(next)) return;
+    setPreferenceState(next);
+    setLangState(languageFor(next, false));
   }, []);
 
-  return { lang, setLang, t };
+  return { lang, preference, setPreference, t };
 }

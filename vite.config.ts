@@ -1,9 +1,13 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
+import fs from 'node:fs';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import path from 'path';
-import type { Plugin } from 'vite';
+import type { Plugin, ViteDevServer } from 'vite';
 import { defineConfig, loadEnv } from 'vite';
+import { localizeDocument, renderLlmsTxt, renderSitemapXml } from './src/seo/render';
+import { LOCALE_SLUG, localeFromRequestPath } from './src/seo/site';
+import type { Language } from './src/types';
 import { extractReadableText, looksLikeHtml } from './src/lib/readableText';
 import { parsePublicHttpUrl, SourceFetchError } from './src/lib/sourceUrl';
 
@@ -110,11 +114,93 @@ function pageFetchPlugin(): Plugin {
   };
 }
 
+function seoPagesPlugin(): Plugin {
+  const indexPath = path.resolve(__dirname, 'index.html');
+  const extraLocales: Language[] = ['zh-Hant', 'en', 'ja', 'ko'];
+
+  const serveLocale = async (
+    req: IncomingMessage,
+    res: ServerResponse,
+    next: (error?: unknown) => void,
+    server: ViteDevServer,
+  ) => {
+    if (req.method !== 'GET' && req.method !== 'HEAD') {
+      next();
+      return;
+    }
+    const url = req.url ?? '';
+    const pathname = url.split('?')[0] ?? '';
+    if (pathname.endsWith('/llms.txt')) {
+      res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+      res.end(renderLlmsTxt());
+      return;
+    }
+    if (pathname.endsWith('/sitemap.xml')) {
+      res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+      res.end(renderSitemapXml());
+      return;
+    }
+    const lang = localeFromRequestPath(pathname);
+    if (!lang) {
+      next();
+      return;
+    }
+    if (!pathname.endsWith('/')) {
+      const query = url.includes('?') ? `?${url.split('?')[1]}` : '';
+      res.statusCode = 308;
+      res.setHeader('Location', `${pathname}/${query}`);
+      res.end();
+      return;
+    }
+    try {
+      const raw = fs.readFileSync(indexPath, 'utf8');
+      const html = await server.transformIndexHtml(url, localizeDocument(raw, lang));
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      res.end(req.method === 'HEAD' ? undefined : html);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  return {
+    name: 'seo-locale-pages',
+    enforce: 'post',
+    transformIndexHtml: {
+      order: 'pre',
+      handler(html, ctx) {
+        const requested = localeFromRequestPath(ctx.originalUrl ?? '');
+        if (requested) return localizeDocument(html, requested);
+        if (html.includes('id="guide"')) return html;
+        return localizeDocument(html, 'zh');
+      },
+    },
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        void serveLocale(req, res, next, server);
+      });
+    },
+    generateBundle(_options, bundle) {
+      const entry = bundle['index.html'];
+      if (!entry || entry.type !== 'asset') return;
+      const source = entry.source.toString();
+      entry.source = localizeDocument(source, 'zh');
+      for (const lang of extraLocales) {
+        this.emitFile({
+          type: 'asset',
+          fileName: `${LOCALE_SLUG[lang]}/index.html`,
+          source: localizeDocument(source, lang),
+        });
+      }
+    },
+  };
+}
+
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
   return {
     base: '/tools/token-speed-simulator/',
-    plugins: [react(), tailwindcss(), pageFetchPlugin()],
+    plugins: [react(), tailwindcss(), pageFetchPlugin(), seoPagesPlugin()],
     build: { sourcemap: false },
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),

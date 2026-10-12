@@ -1,50 +1,69 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-locale="zh">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Token 速度模拟 · 看见人工智能的响应节奏</title>
-    <meta name="description" content="用实时 Token 流模拟不同输出速度，直观比较 AI 响应节奏与流畅度。 Simulate real-time token streams to compare AI response pacing and perceived responsiveness." />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Token Speed Simulator" />
-    <meta property="og:description" content="看见人工智能的响应节奏。 See the pace of AI." />
-    <meta property="og:image" content="https://bubufu.com/bubufu-seal-v1.webp" />
-    <meta property="og:url" content="https://bubufu.com/tools/token-speed-simulator/" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Token Speed Simulator" />
-    <meta name="twitter:description" content="看见人工智能的响应节奏。 See the pace of AI." />
-    <meta name="twitter:image" content="https://bubufu.com/bubufu-seal-v1.webp" />
-    <link rel="canonical" href="https://bubufu.com/tools/token-speed-simulator/" />
-
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "Token Speed Simulator",
-        "alternateName": ["Token 速度模拟", "Token simulator"],
-        "description": "用实时 Token 流模拟不同输出速度，直观比较 AI 响应节奏与流畅度。",
-        "inLanguage": ["zh-CN", "zh-Hant", "en", "ja", "ko"],
-        "url": "https://bubufu.com/tools/token-speed-simulator/",
-        "applicationCategory": "DeveloperApplication",
-        "operatingSystem": "Any",
-        "isAccessibleForFree": true,
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        },
-        "provider": {
-          "@type": "Organization",
-          "name": "Bubufu 步步福",
-          "url": "https://bubufu.com"
-        }
-      }
+    <script>
+      (() => {
+        let theme = 'auto';
+        try {
+          theme = localStorage.getItem('bubufu.theme') || 'auto';
+        } catch {}
+        document.documentElement.dataset.theme =
+          theme === 'dark' || (theme !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches)
+            ? 'dark'
+            : 'light';
+      })();
     </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root{color-scheme:light;--paper:#f5f5f7;--ink:#1d1d1f;--muted:#6e6e73;--red:#bd302b;--line:#dedee3;--surface:#fff;--subtle:#ececef}
+      :root[data-theme='dark']{color-scheme:dark;--paper:#101012;--ink:#f5f5f7;--muted:#a1a1a8;--red:#ff625b;--line:#303034;--surface:#1c1c1f;--subtle:#27272b}
+      html,body{margin:0;background:var(--paper);color:var(--ink)}
+      #boot-loading{position:fixed;inset:0;z-index:80;display:grid;place-items:center;background:var(--paper);padding:24px}
+      #boot-loading .loading-panel{position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:13px;overflow:hidden;min-height:270px;width:min(420px,100%);border:1px solid var(--line);border-radius:20px;background:var(--surface);font:13px/1.4 Arial,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--muted)}
+      #boot-loading .loading-logo{animation:logo-breathe 1.5s ease-in-out infinite}
+      #boot-loading .loading-track{position:absolute;bottom:0;left:0;width:100%;height:3px;background:var(--subtle);overflow:hidden}
+      #boot-loading .loading-track:after{content:'';display:block;width:35%;height:100%;background:var(--red);border-radius:3px;animation:loading-slide 1.4s ease-in-out infinite}
+      @keyframes logo-breathe{0%,100%{opacity:.65;transform:scale(.94)}50%{opacity:1;transform:scale(1)}}
+      @keyframes loading-slide{from{transform:translateX(-100%)}to{transform:translateX(390%)}}
+      @media(prefers-reduced-motion:reduce){#boot-loading .loading-logo,#boot-loading .loading-track:after{animation:none}#boot-loading .loading-track:after{transform:translateX(90%)}}
+    </style>
+    <!--seo:meta-->
+    <title>Token 速度模拟 · 看见人工智能的响应节奏。</title>
+    <meta name="description" content="用实时 Token 流模拟不同输出速度，直观比较 AI 响应节奏与流畅度。" />
+    <link rel="canonical" href="https://bubufu.com/tools/token-speed-simulator/" />
+    <!--/seo:meta-->
   </head>
   <body>
+    <div id="boot-loading">
+      <div class="loading-panel" role="status" aria-live="polite">
+        <svg class="loading-logo" viewBox="80 60 1130 1140" fill="var(--red)" aria-hidden="true" width="44" height="44">
+          <path fill-rule="evenodd" d="M244 102H541L609 172V415L541 483H451V546H341V483H244L175 415V172Z M280 238H326L350 262V326L326 350H280L256 326V262Z M464 238H510L534 262V326L510 350H464L440 326V262Z"/>
+          <path d="M655 102H1128L1170 144V174H655Z"/>
+          <path fill-rule="evenodd" d="M655 222H1170V574L1089 658L1170 740V1076L1089 1158H341V810L298 767L207 934Q204 941 196 941H158Q152 941 148 935L120 896Q116 891 120 882L267 598L295 566H610L655 521Z M517 716H573L597 740V802L573 826H555V1158H535V826H517L493 802V740Z M971 346H1021L1045 370V421L1021 445H1006V552L996 562H873V676H775L737 716V1158H717V708L767 654H851V548L861 538H983V445H971L947 421V370Z M862 788H1032L1063 819V1007L1032 1038H862L831 1007V819Z"/>
+          <path d="M940 842Q947 826 954 842C963 890 969 901 1018 909Q1036 915 1018 922C969 931 963 942 954 990Q947 1008 940 990C931 942 925 931 876 922Q858 915 876 909C925 901 931 890 940 842Z"/>
+        </svg>
+        <span id="boot-loading-label">正在加载工具…</span>
+        <span class="loading-track" aria-hidden="true"></span>
+      </div>
+    </div>
+    <script>
+      (() => {
+        const labels = {
+          zh: '正在加载工具…',
+          'zh-Hant': '正在載入工具…',
+          en: 'Loading tools…',
+          ja: 'ツールを読み込み中…',
+          ko: '도구를 불러오는 중…',
+        };
+        const locale = document.documentElement.dataset.locale || 'zh';
+        const label = document.getElementById('boot-loading-label');
+        if (label) label.textContent = labels[locale] || labels.zh;
+      })();
+    </script>
     <div id="root"></div>
+    <!--seo:guide-->
+    <!--/seo:guide-->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -1,0 +1,27 @@
+# Token Speed Simulator
+
+> See the pace of AI. 看见人工智能的响应节奏。
+
+Browser player for AI output pacing. It does not call a model API, does not require login, and does not upload the source text. About 4 characters count as 1 token. Speeds are a curated Artificial Analysis median output tokens/s snapshot, not a live benchmark.
+
+Fastest on the 2026-10-12 snapshot: Celeris-1 1,532 t/s, then Mercury 2.5 711.8 t/s and Gemini 3.5 Flash-Lite 419.6 t/s. Gemini 4 Argon has no published median and is omitted. Cost is shown only when an output price is published.
+
+Source: https://artificialanalysis.ai/leaderboards/models
+Snapshot: 2026-10-12
+Page updated: 2026-10-13
+
+## Languages
+
+- [Token 速度模拟](https://bubufu.com/tools/token-speed-simulator/): 用实时 Token 流模拟不同输出速度，直观比较 AI 响应节奏与流畅度。
+- [Token 速度模擬](https://bubufu.com/tools/token-speed-simulator/zh-hant/): 模擬即時 Token 串流，比較 AI 回應速度與流暢度。
+- [Token simulator](https://bubufu.com/tools/token-speed-simulator/en/): Simulate real-time token streams to compare AI response pacing and perceived responsiveness.
+- [Token速度シミュレーター](https://bubufu.com/tools/token-speed-simulator/ja/): トークンのストリーミングを再現し、AI の応答速度や体感を比較。
+- [Token 속도 시뮬레이터](https://bubufu.com/tools/token-speed-simulator/ko/): 실시간 토큰 스트림으로 AI 응답 속도와 체감 반응성을 비교하세요.
+
+## Quotes
+
+- zh: 用实时 Token 流模拟不同输出速度，直观比较 AI 响应节奏与流畅度。
+- zh-Hant: 模擬即時 Token 串流，比較 AI 回應速度與流暢度。
+- en: Simulate real-time token streams to compare AI response pacing and perceived responsiveness.
+- ja: トークンのストリーミングを再現し、AI の応答速度や体感を比較。
+- ko: 실시간 토큰 스트림으로 AI 응답 속도와 체감 반응성을 비교하세요.

@@ -1,4 +1,5 @@
 export type Language = 'zh' | 'zh-Hant' | 'en' | 'ja' | 'ko';
+export type LanguagePreference = Language | 'auto';
 
 export type ModelFamilyId =
   | 'openai'
@@ -44,8 +45,20 @@ export interface Translation {
   autoMarkdown: string;
   awaitingSimulation: string;
   language: string;
+  auto: string;
+  theme: string;
+  themeSystem: string;
+  themeLight: string;
+  themeDark: string;
   rankingTitle: string;
   rankingSubtitle: string;
+  modelLine: string;
+  modelVersion: string;
+  pickVersion: string;
+  lineAlibaba: string;
+  lineOther: string;
+  speedCeiling: string;
+  gptSpeedTierNote: string;
   rankingSource: string;
   rankingDisclaimer: string;
   rankingSelectHint: string;
@@ -94,6 +107,8 @@ export interface ModelSpeedRanking {
   creator: string;
   family: ModelFamilyId;
   medianTps: number;
+  /** Vendor peak or multiplier, not an Artificial Analysis median. */
+  speedBasis?: 'aa-median' | 'vendor-ceiling';
   /** USD per 1M output tokens from AA model pages. Omit when unpublished. */
   outputPricePerMillionUsd?: number;
   note?: string;

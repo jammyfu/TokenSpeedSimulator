@@ -1,6 +1,6 @@
 export const CHARS_PER_TOKEN = 4;
 export const MAX_DISPLAY_LENGTH = 5000;
-/** Headroom above current AA fastest (~1412 t/s) as published numbers move. */
+/** Headroom above the current AA fastest (Celeris-1, 1,532 t/s on 2026-10-12). */
 export const MAX_TPS = 2000;
 export const MIN_TPS = 1;
 export const TPS_STEP = 5;

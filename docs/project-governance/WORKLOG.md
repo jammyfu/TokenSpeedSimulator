@@ -1,11 +1,23 @@
 # WORKLOG.md
 
+## 2026-10-13
+
+- Added per-language URLs, crawlable FAQ, hreflang, JSON-LD, sitemap alternates, and `llms.txt` for zh, zh-Hant, en, ja, and ko.
+- Matched the stage and guide to bubufu light/dark tokens. The header theme control shares `bubufu.theme` (`auto` / `light` / `dark`) and the same labels.
+- Model choice is two dropdowns: a line such as GPT or Claude, then a version in that line. The speed list shows only the chosen line.
+- Moved the source editor onto the main stage so the text is visible without opening a collapsed row.
+- Default model is GPT-5.5 Instant. Added GPT-6 Astra Ultrafast at OpenAI’s Codex ceiling of 300 t/s (Pro 500, up to 8×; API up to 6×). Pro Fast mode has no published Astra tokens/s. The ceiling is not treated as an AA median.
+- First paint uses the bubufu tools loading card: red mark, “正在加载工具…”, and the sliding bar. It leaves once the app is on screen.
+- Published the static build to https://bubufu.com/tools/token-speed-simulator/. Locale pages, assets, sitemap, and llms.txt match the local dist hashes. The previous directory is in `/opt/stack/backups/token-speed-simulator-20261013-pre.tar.gz`.
+
 ## 2026-10-12
 
 - Fast-forwarded local `main` to the latest ranking build (`family` groups, source fetch, output cost).
 - Aligned visible copy, page title, and description with bubufu.com in zh, zh-Hant, en, ja, and ko.
 - Language now follows the `bubufu-language` cookie and the page the visitor came from. Changing language here writes that cookie back.
 - Canonical URL is `https://bubufu.com/tools/token-speed-simulator/`.
+- Added an Auto language choice that follows the browser. The default source text is one long introduction, with a matching version in each language.
+- Refreshed the Artificial Analysis median output-speed snapshot to 2026-10-12 and added current rows such as Mercury 2.5, Claude 5.5, GPT-6.1 Sol, GPT-6 Luna, Grok 4.7, and Qwen3.5 Omni Flash.
 
 ## 2026-09-13
 
