@@ -1,5 +1,6 @@
 import { sampleTexts } from './samples';
 import { Language, Translation } from '../types';
+import { extraUi } from './extraLocales';
 
 const families = {
   familyOpenAI: 'OpenAI · GPT',
@@ -434,4 +435,9 @@ export const translations: Record<Language, Translation> = {
     sourceFetchBlocked: '이 주소는 불러올 수 없습니다.',
     sourceFetchEmpty: '이 페이지에는 읽을 글이 없습니다.',
   },
+  es: { ...(extraUi.es as unknown as Omit<Translation, 'sampleText'>), ...families, familySpecialists: extraUi.es.familySpecialists, sampleText: sampleTexts.es } as Translation,
+  pt: { ...(extraUi.pt as unknown as Omit<Translation, 'sampleText'>), ...families, familySpecialists: extraUi.pt.familySpecialists, sampleText: sampleTexts.pt } as Translation,
+  ro: { ...(extraUi.ro as unknown as Omit<Translation, 'sampleText'>), ...families, familySpecialists: extraUi.ro.familySpecialists, sampleText: sampleTexts.ro } as Translation,
+  fr: { ...(extraUi.fr as unknown as Omit<Translation, 'sampleText'>), ...families, familySpecialists: extraUi.fr.familySpecialists, sampleText: sampleTexts.fr } as Translation,
+  de: { ...(extraUi.de as unknown as Omit<Translation, 'sampleText'>), ...families, familySpecialists: extraUi.de.familySpecialists, sampleText: sampleTexts.de } as Translation,
 };

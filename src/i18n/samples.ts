@@ -1,4 +1,5 @@
 import { Language } from '../types';
+import { extraSamples } from './extraLocales';
 
 /** Default source text. The same introduction, written for each live locale. */
 export const sampleTexts: Record<Language, string> = {
@@ -16,7 +17,7 @@ Token 是模型读写文字的片段。大约 1,000 个 Token 约等于 750 个�
 
 如果某一行公布了输出标价，工具会按 Token 数估算花费，并给出大约的每秒、每分钟、每小时费用。没有标价就显示横线，不会替你猜一个价格。
 
-语言与步步福相同。选择自动时，跟随浏览器；你也可以指定简体中文、繁體中文、English、日本語或한국어。在这里改语言，会记在同一个 bubufu-language 里。回到主站，语言仍然一致。这个工具免费，打开就能用。`,
+语言与步步福相同。选择自动时，跟随浏览器；你也可以指定简体中文、繁體中文、English、日本語、한국어、Español、Português、Română、Français 或 Deutsch。在这里改语言，会记在同一个 bubufu-language 里。回到主站，语言仍然一致。这个工具免费，打开就能用。`,
 
   'zh-Hant': `Token 速度模擬
 
@@ -32,7 +33,7 @@ Token 是模型讀寫文字的片段。大約 1,000 個 Token 約等於 750 個�
 
 如果某一行公布了輸出標價，工具會按 Token 數估算花費，並給出大約的每秒、每分鐘、每小時費用。沒有標價就顯示橫線，不會替你猜一個價格。
 
-語言與步步福相同。選擇自動時，跟隨瀏覽器；你也可以指定簡體中文、繁體中文、English、日本語或한국어。在這裡改語言，會記在同一個 bubufu-language 裡。回到主站，語言仍然一致。這個工具免費，打開就能用。`,
+語言與步步福相同。選擇自動時，跟隨瀏覽器；你也可以指定簡體中文、繁體中文、English、日本語、한국어、Español、Português、Română、Français 或 Deutsch。在這裡改語言，會記在同一個 bubufu-language 裡。回到主站，語言仍然一致。這個工具免費，打開就能用。`,
 
   en: `Token simulator
 
@@ -48,7 +49,7 @@ You can edit this text, or replace it with your own writing. Paste a public page
 
 When a row has a published output price, the tool estimates spend from the token count and shows a rough cost per second, per minute, and per hour. A missing price stays as a dash. The tool does not invent one.
 
-The languages match Bubufu. Auto follows your browser. You can also choose Simplified Chinese, Traditional Chinese, English, Japanese, or Korean. A choice here is stored in the same bubufu-language cookie, so the main site stays in step. The tool is free, and it is ready when you open it.`,
+The languages match Bubufu. Auto follows your browser. You can also choose Simplified or Traditional Chinese, English, Japanese, Korean, Spanish, Portuguese, Romanian, French, or German. A choice here is stored in the same bubufu-language cookie, so the main site stays in step. The tool is free, and it is ready when you open it.`,
 
   ja: `Token速度シミュレーター
 
@@ -64,7 +65,7 @@ The languages match Bubufu. Auto follows your browser. You can also choose Simpl
 
 出力単価が公開されている行では、トークン数から費用を見積もり、秒あたり、分あたり、時間あたりの目安も出します。単価がない行は横線のままです。価格を推測して埋めません。
 
-言語は Bubufu と同じです。自動を選ぶとブラウザーに従います。簡体字中国語、繁体字中国語、English、日本語、한국어も指定できます。ここで選んだ言語は同じ bubufu-language に保存され、メインサイトとも揃います。このツールは無料で、開けばすぐ使えます。`,
+言語は Bubufu と同じです。自動を選ぶとブラウザーに従います。簡体字中国語、繁体字中国語、English、日本語、한국어、Español、Português、Română、Français、Deutsch も指定できます。ここで選んだ言語は同じ bubufu-language に保存され、メインサイトとも揃います。このツールは無料で、開けばすぐ使えます。`,
 
   ko: `Token 속도 시뮬레이터
 
@@ -80,5 +81,6 @@ The languages match Bubufu. Auto follows your browser. You can also choose Simpl
 
 출력 가격이 공개된 줄은 토큰 수로 비용을 가늠하고, 초당, 분당, 시간당 비용의 대략적인 값도 보여 줍니다. 가격이 없으면 줄표로 남깁니다. 없는 가격을 추측해 넣지 않습니다.
 
-언어는 Bubufu와 같습니다. 자동을 고르면 브라우저를 따릅니다. 简体中文, 繁體中文, English, 日本語, 한국어를 직접 고를 수도 있습니다. 여기서 고른 언어는 같은 bubufu-language에 저장되어 메인 사이트와 맞춰집니다. 이 도구는 무료이며, 열면 바로 쓸 수 있습니다.`,
+언어는 Bubufu와 같습니다. 자동을 고르면 브라우저를 따릅니다. 简体中文, 繁體中文, English, 日本語, 한국어, Español, Português, Română, Français, Deutsch를 직접 고를 수도 있습니다. 여기서 고른 언어는 같은 bubufu-language에 저장되어 메인 사이트와 맞춰집니다. 이 도구는 무료이며, 열면 바로 쓸 수 있습니다.`,
+  ...extraSamples,
 };

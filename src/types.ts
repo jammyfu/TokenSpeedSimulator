@@ -1,4 +1,4 @@
-export type Language = 'zh' | 'zh-Hant' | 'en' | 'ja' | 'ko';
+export type Language = 'zh' | 'zh-Hant' | 'en' | 'ja' | 'ko' | 'es' | 'pt' | 'ro' | 'fr' | 'de';
 export type LanguagePreference = Language | 'auto';
 
 export type ModelFamilyId =

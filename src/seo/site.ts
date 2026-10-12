@@ -12,6 +12,11 @@ export const LOCALE_SLUG: Record<Language, string> = {
   en: 'en',
   ja: 'ja',
   ko: 'ko',
+  es: 'es',
+  pt: 'pt',
+  ro: 'ro',
+  fr: 'fr',
+  de: 'de',
 };
 
 const SLUG_LANG: Record<string, Language> = {
@@ -19,10 +24,17 @@ const SLUG_LANG: Record<string, Language> = {
   en: 'en',
   ja: 'ja',
   ko: 'ko',
+  es: 'es',
+  pt: 'pt',
+  ro: 'ro',
+  fr: 'fr',
+  de: 'de',
 };
 
 export function htmlLang(lang: Language): string {
-  return lang === 'zh' ? 'zh-CN' : lang;
+  if (lang === 'zh') return 'zh-CN';
+  if (lang === 'pt') return 'pt-PT';
+  return lang;
 }
 
 export function pageUrl(lang: Language): string {
@@ -32,7 +44,7 @@ export function pageUrl(lang: Language): string {
 
 export function localeFromRequestPath(url: string): Language | null {
   const path = url.split('?')[0]?.split('#')[0] ?? '';
-  const match = path.match(/\/(zh-hant|en|ja|ko)\/?$/);
+  const match = path.match(/\/(zh-hant|en|ja|ko|es|pt|ro|fr|de)\/?$/);
   return match ? SLUG_LANG[match[1]] ?? null : null;
 }
 
@@ -42,4 +54,9 @@ export const HREFLANG: { code: string; lang: Language }[] = [
   { code: 'en', lang: 'en' },
   { code: 'ja', lang: 'ja' },
   { code: 'ko', lang: 'ko' },
+  { code: 'es', lang: 'es' },
+  { code: 'pt-PT', lang: 'pt' },
+  { code: 'ro', lang: 'ro' },
+  { code: 'fr', lang: 'fr' },
+  { code: 'de', lang: 'de' },
 ];
