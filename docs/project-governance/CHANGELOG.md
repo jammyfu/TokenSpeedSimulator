@@ -1,5 +1,9 @@
 # CHANGELOG.md
 
+## 2026-10-17
+
+- DeepSeek V4.1 Flash (max) speed refreshed to 175.9 t/s (AA model page, DeepSeek API, checked 2026-10-17; was 204.9 from the 2026-10-12 snapshot).
+
 ## 2026-09-13
 
 - Grouped the ranking UI by mainstream model lines and reserved empty Grok/Qwen families.

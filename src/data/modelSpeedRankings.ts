@@ -13,6 +13,9 @@ import { ModelFamilyId, ModelSpeedRanking, RankingSourceMeta } from '../types';
  * 419.6. Curated current rows per model line, plus slower frontier
  * models for contrast. Not the full catalog.
  *
+ * DeepSeek V4.1 Flash (max) was re-checked on 2026-10-17 against
+ * https://artificialanalysis.ai/models/deepseek-v4-1-flash (175.9 t/s).
+ *
  * Gemini 4 Argon has no published median tokens/s on that page, so it is
  * omitted. Deprecated rows are left out when a current replacement exists.
  *
@@ -141,10 +144,11 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     displayName: 'DeepSeek V4.1 Flash (max)',
     creator: 'DeepSeek',
     family: 'deepseek',
-    medianTps: 204.9,
+    medianTps: 175.9,
     outputPricePerMillionUsd: 1.2,
+    note: 'Latest DeepSeek Flash. 175.9 t/s on DeepSeek API, AA model page 2026-10-17: https://artificialanalysis.ai/models/deepseek-v4-1-flash',
     source: SOURCE,
-    fetchedAt: FETCHED_AT,
+    fetchedAt: '2026-10-17',
   },
   {
     id: 'command-a-plus',
