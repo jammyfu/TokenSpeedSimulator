@@ -25,7 +25,9 @@ export interface SeoFacts {
 }
 
 export function rankingFacts(): SeoFacts {
-  const [first, second, third] = MODEL_SPEED_RANKINGS.filter((row) => row.speedBasis !== 'vendor-ceiling');
+  const [first, second, third] = MODEL_SPEED_RANKINGS.filter(
+    (row) => !row.speedBasis || row.speedBasis === 'aa-median'
+  );
   const speed = (value: number | undefined) => (value == null ? '' : formatMedianTps(value));
   return {
     date: RANKING_SOURCE.fetchedAt,

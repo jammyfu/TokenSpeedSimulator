@@ -63,7 +63,11 @@ const RankingRow: React.FC<RankingRowProps> = ({
           className="min-w-0 flex-1 px-2 py-1.5 flex items-center gap-2 text-left"
         >
           <span className="w-5 shrink-0 text-[10px] font-mono text-muted tabular-nums">
-            {row.speedBasis === 'vendor-ceiling' ? t.speedCeiling : rank}
+            {row.speedBasis === 'vendor-ceiling'
+              ? t.speedCeiling
+              : row.speedBasis === 'openrouter-p50'
+                ? 'OR'
+                : rank}
           </span>
           <span className="min-w-0 flex-1">
             <span className="flex items-center gap-1.5">
@@ -138,7 +142,7 @@ export const RankingList: React.FC<RankingListProps> = ({
   const sourceLabel = t.rankingSource.replace('{date}', source.fetchedAt);
   const groups = useMemo(() => groupRankingsByFamily(rankings), [rankings]);
   const ranks = useMemo(
-    () => globalRankById(rankings.filter((row) => row.speedBasis !== 'vendor-ceiling')),
+    () => globalRankById(rankings.filter((row) => !row.speedBasis || row.speedBasis === 'aa-median')),
     [rankings]
   );
   const selectedFamily = rankings.find((row) => row.id === selectedId)?.family;
