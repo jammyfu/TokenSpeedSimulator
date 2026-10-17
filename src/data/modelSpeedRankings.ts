@@ -13,6 +13,10 @@ import { ModelFamilyId, ModelSpeedRanking, RankingSourceMeta } from '../types';
  * 419.6. Curated current rows per model line, plus slower frontier
  * models for contrast. Not the full catalog.
  *
+ * DeepSeek V4.1 Flash 1017 (released 2026-10-17) has no AA median yet;
+ * its row uses OpenRouter live p50 throughput (speedBasis openrouter-p50)
+ * and is kept out of the AA rank numbers.
+ *
  * DeepSeek V4.1 Flash (max) was re-checked on 2026-10-17 against
  * https://artificialanalysis.ai/models/deepseek-v4-1-flash (175.9 t/s).
  *
@@ -138,6 +142,18 @@ const RANKING_ROWS: ModelSpeedRanking[] = [
     outputPricePerMillionUsd: 0.9,
     source: SOURCE,
     fetchedAt: FETCHED_AT,
+  },
+  {
+    id: 'deepseek-v4-1-flash-1017',
+    displayName: 'DeepSeek V4.1 Flash 1017',
+    creator: 'DeepSeek',
+    family: 'deepseek',
+    medianTps: 149,
+    speedBasis: 'openrouter-p50',
+    outputPricePerMillionUsd: 1.2,
+    note: 'Released 2026-10-17; now behind deepseek-flash on the DeepSeek API. AA has no median yet. 149 t/s is OpenRouter live p50 throughput for the DeepSeek endpoint, checked 2026-10-17: https://openrouter.ai/deepseek/deepseek-v4.1-flash-1017 . DeepSeek publishes no tokens/s. Output $1.20/1M peak ($0.60 off-peak) per https://api-docs.deepseek.com/quick_start/pricing.',
+    source: 'OpenRouter',
+    fetchedAt: '2026-10-17',
   },
   {
     id: 'deepseek-v4-1-flash-max',

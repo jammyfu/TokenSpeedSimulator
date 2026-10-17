@@ -2,6 +2,8 @@
 
 ## 2026-10-17
 
+- Added DeepSeek V4.1 Flash 1017 (released 2026-10-17) at 149 t/s, OpenRouter live p50 for the DeepSeek endpoint; marked `OR` and kept out of AA ranks until AA publishes a median.
+
 - DeepSeek V4.1 Flash (max) speed refreshed to 175.9 t/s (AA model page, DeepSeek API, checked 2026-10-17; was 204.9 from the 2026-10-12 snapshot).
 
 ## 2026-09-13

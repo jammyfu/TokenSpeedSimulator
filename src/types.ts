@@ -107,8 +107,12 @@ export interface ModelSpeedRanking {
   creator: string;
   family: ModelFamilyId;
   medianTps: number;
-  /** Vendor peak or multiplier, not an Artificial Analysis median. */
-  speedBasis?: 'aa-median' | 'vendor-ceiling';
+  /**
+   * vendor-ceiling: vendor peak or multiplier.
+   * openrouter-p50: OpenRouter live p50 throughput for one provider endpoint,
+   * used when AA has no median yet. Neither is an Artificial Analysis median.
+   */
+  speedBasis?: 'aa-median' | 'vendor-ceiling' | 'openrouter-p50';
   /** USD per 1M output tokens from AA model pages. Omit when unpublished. */
   outputPricePerMillionUsd?: number;
   note?: string;
