@@ -1,0 +1,11 @@
+# Token Speed Simulator
+
+> Interactive web tool that visualizes LLM token streaming speed (1–2000 tokens/s), with A/B side-by-side races, editable source text, Markdown rendering and per-model speed/price snapshots from Artificial Analysis. 看见大模型的输出速度。
+
+- Repository: https://github.com/jammyfu/TokenSpeedSimulator
+
+## Run
+`npm install`, copy `.env.example` to `.env.local` if needed, then `npm run dev` (port 3000). Stack: Vite + TypeScript.
+
+## FAQ
+- What does 50 TPS feel like? Set the speed slider or pick a model preset and press Play.
