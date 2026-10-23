@@ -1,3 +1,11 @@
+<!-- geo:badges -->
+**Token Speed Simulator** lets you see how fast an LLM streams text at a given tokens-per-second rate (1–2000 TPS), compare two speeds side by side, and estimate cost. 用实时 Token 流直观比较不同模型输出速度与花费。
+
+[![TypeScript](https://img.shields.io/badge/TypeScript-Vite-3178C6)](package.json) [![Release](https://img.shields.io/github/v/release/jammyfu/TokenSpeedSimulator)](https://github.com/jammyfu/TokenSpeedSimulator/releases)
+
+Run locally / 本地运行: `npm install && npm run dev` (see [快速开始](#️-快速开始))
+
+
 <!-- BEGIN:personal-project-standard-entry -->
 ## Project Entry
 
