@@ -8,7 +8,7 @@
 
 ![Token Speed Simulator](.github/social-preview.png)
 
-![A/B token streaming: real product screenshot](docs/images/stream-comparison.png)
+![真实 A/B 文字流播放截图](docs/images/stream-comparison.png)
 
 ## 30 秒上手
 
@@ -69,9 +69,9 @@ python3 tools/verify.py
 
 ## 开发与贡献
 
-- [Data / 数据 / 資料 / データ / 데이터](src/data/modelSpeedRankings.ts) · [Playback](src/hooks/useTokenStream.ts) · [Constants](src/constants.ts)
-- [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Roadmap](MASTER_PLAN.md) · [Current plan](CURRENT_PLAN.md)
-- [Project brief](PROJECT_BRIEF.md) · [Backlog](TODO_BACKLOG.md) · [Worklog](docs/project-governance/WORKLOG.md)
-- [Automation](docs/AUTOMATION_COMMANDS.md) · [Autonomy](docs/LONG_RUNNING_AUTONOMY.md) · [llms.txt](llms.txt)
+- [数据定义](src/data/modelSpeedRankings.ts) · [播放实现](src/hooks/useTokenStream.ts) · [常量](src/constants.ts)
+- [参与贡献](CONTRIBUTING.md) · [安全](SECURITY.md) · [路线图](MASTER_PLAN.md) · [当前计划](CURRENT_PLAN.md)
+- [项目简介](PROJECT_BRIEF.md) · [待办](TODO_BACKLOG.md) · [执行记录](docs/project-governance/WORKLOG.md)
+- [自动化](docs/AUTOMATION_COMMANDS.md) · [持续维护](docs/LONG_RUNNING_AUTONOMY.md) · [llms.txt](llms.txt)
 
 欢迎提交带来源 URL、指标口径和核验日期的数据修正，或带复现步骤的界面问题。不要把不同测量口径混成统一排名。如果它帮你解释了 TPS，欢迎 Star，方便下次演示时找到它。

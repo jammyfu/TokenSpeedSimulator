@@ -8,7 +8,7 @@ API 크레딧을 구매하기 전에 20·50·200 TPS의 체감 차이를 확인�
 
 ![Token Speed Simulator](.github/social-preview.png)
 
-![A/B token streaming: real product screenshot](docs/images/stream-comparison.png)
+![실제 A/B 텍스트 스트리밍 화면](docs/images/stream-comparison.png)
 
 ## 30초 만에 시작하기
 
@@ -69,9 +69,9 @@ python3 tools/verify.py
 
 ## 개발 및 기여
 
-- [Data / 数据 / 資料 / データ / 데이터](src/data/modelSpeedRankings.ts) · [Playback](src/hooks/useTokenStream.ts) · [Constants](src/constants.ts)
-- [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Roadmap](MASTER_PLAN.md) · [Current plan](CURRENT_PLAN.md)
-- [Project brief](PROJECT_BRIEF.md) · [Backlog](TODO_BACKLOG.md) · [Worklog](docs/project-governance/WORKLOG.md)
-- [Automation](docs/AUTOMATION_COMMANDS.md) · [Autonomy](docs/LONG_RUNNING_AUTONOMY.md) · [llms.txt](llms.txt)
+- [데이터 정의](src/data/modelSpeedRankings.ts) · [재생 구현](src/hooks/useTokenStream.ts) · [상수](src/constants.ts)
+- [기여 안내](CONTRIBUTING.md) · [보안](SECURITY.md) · [로드맵](MASTER_PLAN.md) · [현재 계획](CURRENT_PLAN.md)
+- [프로젝트 개요](PROJECT_BRIEF.md) · [백로그](TODO_BACKLOG.md) · [작업 기록](docs/project-governance/WORKLOG.md)
+- [자동화](docs/AUTOMATION_COMMANDS.md) · [지속 운영](docs/LONG_RUNNING_AUTONOMY.md) · [llms.txt](llms.txt)
 
 데이터 수정에는 출처 URL·측정 기준·확인 날짜를, UI 문제에는 재현 절차를 포함해 주세요. 서로 다른 측정 방식을 하나의 순위로 합치지 마세요. TPS를 설명하는 데 도움이 되었다면 다음 시연 때 쉽게 찾을 수 있도록 Star를 눌러 주세요.

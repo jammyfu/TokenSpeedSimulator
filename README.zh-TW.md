@@ -8,7 +8,7 @@
 
 ![Token Speed Simulator](.github/social-preview.png)
 
-![A/B token streaming: real product screenshot](docs/images/stream-comparison.png)
+![真實 A/B 文字串流播放畫面](docs/images/stream-comparison.png)
 
 ## 30 秒開始使用
 
@@ -69,9 +69,9 @@ python3 tools/verify.py
 
 ## 開發與貢獻
 
-- [Data / 数据 / 資料 / データ / 데이터](src/data/modelSpeedRankings.ts) · [Playback](src/hooks/useTokenStream.ts) · [Constants](src/constants.ts)
-- [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Roadmap](MASTER_PLAN.md) · [Current plan](CURRENT_PLAN.md)
-- [Project brief](PROJECT_BRIEF.md) · [Backlog](TODO_BACKLOG.md) · [Worklog](docs/project-governance/WORKLOG.md)
-- [Automation](docs/AUTOMATION_COMMANDS.md) · [Autonomy](docs/LONG_RUNNING_AUTONOMY.md) · [llms.txt](llms.txt)
+- [資料定義](src/data/modelSpeedRankings.ts) · [播放實作](src/hooks/useTokenStream.ts) · [常數](src/constants.ts)
+- [參與貢獻](CONTRIBUTING.md) · [安全性](SECURITY.md) · [發展規劃](MASTER_PLAN.md) · [目前計畫](CURRENT_PLAN.md)
+- [專案簡介](PROJECT_BRIEF.md) · [待辦事項](TODO_BACKLOG.md) · [執行紀錄](docs/project-governance/WORKLOG.md)
+- [自動化](docs/AUTOMATION_COMMANDS.md) · [持續維護](docs/LONG_RUNNING_AUTONOMY.md) · [llms.txt](llms.txt)
 
 歡迎提供附來源網址、測量定義與查證日期的資料修正，或附重現步驟的介面問題。不要把不同測量方式混成單一排行。如果這個工具幫你說明了 TPS，歡迎加星，方便下次示範時找到它。
