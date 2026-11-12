@@ -43,3 +43,11 @@ Polish the watchable AA ranking demo: group models by mainstream lines/families,
 - Add scripted demo scenarios.
 - Document performance expectations at different TPS values.
 - Add screenshot-based regression checks.
+
+## Documentation refresh (2026-11-12)
+
+- [x] Replace mixed-language introduction with five complete, cross-linked guides.
+- [x] Put the try-now action and genuine comparison screenshot before contributor governance.
+- [x] Correct ten-language support, API-key requirements, simulation/token/cost boundaries and license status.
+- [x] Align repository llms.txt and provide evidence-based About/topic recommendations.
+- [ ] Publish a separate draft PR without merging or rewriting the older GEO branch.

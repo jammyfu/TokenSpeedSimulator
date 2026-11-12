@@ -45,3 +45,12 @@
 - Bootstrapped the repository into the `continuous-project-loop` structure.
 - Added durable planning files, governance logs, and a repo-level verification entry.
 - Standardized the README entry section and automation guidance for `TokenSpeedSimulator`.
+
+## 2026-11-12: Five-language user guide
+
+- Reviewed current source rather than copying older GEO PR #1: 1–2000 TPS, ten app locales, approximate token playback, mixed-source snapshot rows and URL reader fallback.
+- Reorganized README around the actual product, real A/B screenshot and practical examples; added complete English, Taiwan Traditional Chinese, Japanese and Korean guides while keeping the Simplified Chinese entry path.
+- Removed the unsupported release badge and unnecessary API-key setup step. License absence is stated rather than granting a new license.
+- Reused the existing title asset; captured the deployed English app after A/B playback and pause. No screenshots or model figures were fabricated.
+- Added factual llms.txt navigation and a metadata proposal in docs/GEO.md; no repository settings or runtime code changed.
+- Verification: `npm run lint`, `npm run build`, `python3 tools/verify.py`, `python3 tools/next_plan.py --check`, `git diff --check`, and five-guide section/local-link checks passed. Build retains the pre-existing >500 kB chunk warning. Deployed A/B selection/play/pause was browser-checked; local Chromium launch was unavailable, so no claim of local mobile/browser regression testing.

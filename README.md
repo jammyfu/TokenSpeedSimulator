@@ -1,78 +1,77 @@
-<!-- geo:badges -->
-**Token Speed Simulator** lets you see how fast an LLM streams text at a given tokens-per-second rate (1–2000 TPS), compare two speeds side by side, and estimate cost. 用实时 Token 流直观比较不同模型输出速度与花费。
+[简体中文](README.md) · [繁體中文](README.zh-TW.md) · [English](README.en.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
-[![TypeScript](https://img.shields.io/badge/TypeScript-Vite-3178C6)](package.json) [![Release](https://img.shields.io/github/v/release/jammyfu/TokenSpeedSimulator)](https://github.com/jammyfu/TokenSpeedSimulator/releases)
+# Token 速度模拟器
 
-Run locally / 本地运行: `npm install && npm run dev` (see [快速开始](#️-快速开始))
+不用买一堆 API 额度，先看懂 20、50、200 TPS 的体感差别。
 
+[**立即体验 →**](https://bubufu.com/tools/token-speed-simulator/)
 
-<!-- BEGIN:personal-project-standard-entry -->
-## Project Entry
+![Token Speed Simulator](.github/social-preview.png)
 
-- Project brief: [PROJECT_BRIEF.md](PROJECT_BRIEF.md)
-- Long-range roadmap: [MASTER_PLAN.md](MASTER_PLAN.md)
-- Current execution entry: [CURRENT_PLAN.md](CURRENT_PLAN.md)
-- Candidate backlog: [TODO_BACKLOG.md](TODO_BACKLOG.md)
-- Governance log: [docs/project-governance/WORKLOG.md](docs/project-governance/WORKLOG.md)
-- Automation notes: [docs/AUTOMATION_COMMANDS.md](docs/AUTOMATION_COMMANDS.md)
-- Long-running autonomy: [docs/LONG_RUNNING_AUTONOMY.md](docs/LONG_RUNNING_AUTONOMY.md)
-- Verification entry: `python3 tools/verify.py`
+![A/B token streaming: real product screenshot](docs/images/stream-comparison.png)
 
-## Standardized Summary
+## 30 秒上手
 
-- Positioning: Interactive visualization tool for LLM token streaming speed and perceived responsiveness.
-- Stack: Vite + TypeScript frontend.
-- Current goal: Same five languages and the same plain voice as bubufu.com, on the latest ranking build.
-<!-- END:personal-project-standard-entry -->
+1. 选择模型系列和版本，或直接调整 **1–2000 TPS**。
+2. 点击 **播放**，观察同一段文字的输出节奏。
+3. 打开 **对比**，把另一条模型设为 B。两列使用同一份文本，更容易看清速度差异。
 
-# Token 速度模拟 (Token Speed Simulator)
+> 这是**浏览器文字播放模拟器，不是真实模型跑分**。不会调用模型 API，也不需要 API 密钥。上图是已部署产品的真实 A/B 播放截图，不是生成的效果图。
 
-看见人工智能的响应节奏。用实时 Token 流比较不同输出速度。语言与 bubufu.com 一致：简体中文、繁體中文、English、日本語、한국어。
+## 适合用来做什么
 
-## 🚀 核心特性
+| 你想知道 | 怎么试 | 能得到什么 |
+| --- | --- | --- |
+| 20 TPS 和 100 TPS 读起来差多少？ | 相同文本、两种速度 | 直观比较阅读等待感 |
+| 聊天产品需要多快？ | 粘贴自己的示例答复 | 讨论流式交互节奏，而不是猜数字 |
+| 快一点会贵多少？ | 选有输出单价的模型 | 输出费用量级参考，不是账单 |
+| 给同事解释 tokens/s | 播放或 A/B 对比 | 可现场演示的速度概念 |
 
-- **权威排行定速**: 内置 [Artificial Analysis](https://artificialanalysis.ai/leaderboards/models) 中位输出 tokens/s 快照（2026-10-12），按主流中西系列分组（含通义、GLM、Kimi、MiniMax、Grok），点选即可按该速度播放。切换到不同系列会清空舞台文本。
-- **速度×标价**: 有 AA 输出单价的模型会显示 $/百万 Token、每秒/每分钟燃烧率和累计花费。
-- **源文本可编辑**: 可直接改示例文本，或粘贴公开页面 URL 抓取正文后再播放。
-- **可看、可对比**: 主舞台是流式输出；可选 A/B 并排竞速，一个「播放」按钮。
-- **全屏自适应**: 铺满视口（100dvh），手机到桌面切换为上下/左右布局。
-- **五种语言**: 与 bubufu.com 相同的简体中文、繁體中文、English、日本語、한국어，并提供「自动」。自动跟随浏览器；指定语言会写回 `bubufu-language`。默认原文是同一篇工具介绍的对应语言版本。
-- **语言地址与说明**: 简体在 `/tools/token-speed-simulator/`，繁体、英文、日文、韩文在 `zh-hant`、`en`、`ja`、`ko`。每页有独立标题、说明、FAQ、hreflang 和结构化数据。`llms.txt` 给生成式引擎一份可引用的说明。
-- **实时速度控制**: 支持 1–2000 TPS，覆盖当前 AA 最快模型并留出余量。
-- **动态渲染**: 内置 Markdown 渲染，模拟真实流式格式。
+支持 Markdown、编辑原文、按模型系列筛选和明暗主题。应用已有 **10 种语言**：简中、繁中、英语、日语、韩语、西班牙语、葡萄牙语、罗马尼亚语、法语、德语；本仓库提供五语使用文档。
 
-## 🛠️ 快速开始
+## 数字要这样理解
 
-### 前提条件
+- **Token 是近似值**：实现按 4 个字符约等于 1 token 播放，不调用真实分词器。中文、日文、韩文与英文的精确 token 数不能这样换算。
+- **速度是快照，不是实时排名**：主数据来自 Artificial Analysis 2026-10-12 快照，部分条目有单独日期和来源，例如 2026-10-17 的 DeepSeek 更新。OpenRouter p50 与厂商公布的峰值不能当成同口径 AA 中位数。
+- **费用只估输出**：约为模拟 token 数 × 输出美元单价 ÷ 1,000,000。不计输入、缓存、推理 token、折扣或实际账单；缺失价格保留空值。
+- **不测首字延迟或质量**：网络、排队、上下文长度及设备渲染都可能影响真实体验。不要用这张表判断模型质量或承诺线上吞吐。
+- 文本循环播放，只保留最近 5,000 个字符显示，避免页面无限增长。
 
-- [Node.js](https://nodejs.org/) (建议最新 LTS 版本)
+## 本地运行
 
-### 本地运行
+需要 Node.js LTS 与 npm。在终端执行：
 
-1. **安装依赖**:
-   ```bash
-   npm install
-   ```
+```bash
+git clone https://github.com/jammyfu/TokenSpeedSimulator.git
+cd TokenSpeedSimulator
+npm ci
+npm run dev
+```
 
-2. **配置环境变量**:
-   复制 `.env.example` 为 `.env.local` 并配置您的 API 密钥（如需）：
-   ```bash
-   cp .env.example .env.local
-   ```
+打开 **http://localhost:3000/tools/token-speed-simulator/**。纯播放不需要 `.env.local` 或 Gemini/API 密钥。
 
-3. **启动开发服务器**:
-   ```bash
-   npm run dev
-   ```
-   默认端口为 `3000`。
+```bash
+npm run lint
+npm run build
+npm run preview
+python3 tools/verify.py
+```
 
-## 🧪 技术栈
+构建产物在 `dist/`，默认部署路径是 `/tools/token-speed-simulator/`，不是站点根目录。Vite 开发/预览服务器提供页面抓取端点；静态托管需要相应后端，客户端还会尝试直接抓取及 Jina Reader 回退。
 
-- **前端框架**: [React 19](https://react.dev/)
-- **构建工具**: [Vite 6](https://vitejs.dev/)
-- **样式方案**: [Tailwind CSS 4](https://tailwindcss.com/)
-- **动画引擎**: [Motion (Framer Motion)](https://motion.dev/)
-- **图标库**: [Lucide React](https://lucide.dev/)
+## 隐私、来源与常见问题
 
----
-由 [Antigravity](https://github.com/google-deepmind/antigravity) 辅助开发。
+**文字会发给模型吗？** 不会，播放在浏览器中完成。**抓取网页不同**：目标 URL 会发送给抓取端点，回退时可能发送给 Jina Reader。只抓公开页面，不要粘贴私人链接、访问令牌或带敏感参数的地址。
+
+**哪一个模型现在最快？** 本项目不能回答实时最快；请查看[原始排行榜](https://artificialanalysis.ai/leaderboards/models)及每条数据的日期。
+
+**可以商用代码吗？** 当前仓库未提供 LICENSE。公开可读不等于已获商业复用授权，请先联系维护者；不要将其标为 MIT。
+
+## 开发与贡献
+
+- [Data / 数据 / 資料 / データ / 데이터](src/data/modelSpeedRankings.ts) · [Playback](src/hooks/useTokenStream.ts) · [Constants](src/constants.ts)
+- [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Roadmap](MASTER_PLAN.md) · [Current plan](CURRENT_PLAN.md)
+- [Project brief](PROJECT_BRIEF.md) · [Backlog](TODO_BACKLOG.md) · [Worklog](docs/project-governance/WORKLOG.md)
+- [Automation](docs/AUTOMATION_COMMANDS.md) · [Autonomy](docs/LONG_RUNNING_AUTONOMY.md) · [llms.txt](llms.txt)
+
+欢迎提交带来源 URL、指标口径和核验日期的数据修正，或带复现步骤的界面问题。不要把不同测量口径混成统一排名。如果它帮你解释了 TPS，欢迎 Star，方便下次演示时找到它。
